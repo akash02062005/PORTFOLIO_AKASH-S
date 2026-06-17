@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Inter, sans-serif">
+  <defs>
+    <linearGradient id="bgF" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#071a14"/><stop offset="1" stop-color="#04070f"/></linearGradient>
+    <radialGradient id="glF" cx="50%" cy="30%" r="62%"><stop offset="0" stop-color="#34d399" stop-opacity="0.3"/><stop offset="1" stop-color="#34d399" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bgF)"/><rect width="800" height="500" fill="url(#glF)"/>
+  <text x="32" y="48" fill="#eafff6" font-size="22" font-weight="700">AI Finance Management</text>
+  <text x="32" y="70" fill="#6ee7b7" font-size="13">Multi-LLM advisor &#183; Prophet forecast &#183; anomaly ML</text>
+  <text x="704" y="56" fill="#34d399" font-size="26" text-anchor="middle">&#127974;</text>
+  <!-- net worth + forecast -->
+  <g transform="translate(32,100)">
+    <rect width="400" height="300" rx="16" fill="#06231b" stroke="#114b39"/>
+    <text x="20" y="34" fill="#9deecb" font-size="13">Cash flow &#183; Prophet forecast</text>
+    <polyline fill="none" stroke="#34d399" stroke-width="3" points="30,150 80,130 130,140 180,100 230,110 280,80"/>
+    <polyline fill="none" stroke="#22d3ee" stroke-width="3" stroke-dasharray="6 5" points="280,80 330,70 370,52"/>
+    <g fill="#34d399"><circle cx="30" cy="150" r="4"/><circle cx="180" cy="100" r="4"/><circle cx="280" cy="80" r="4"/></g>
+    <circle cx="370" cy="52" r="4" fill="#22d3ee"/>
+    <line x1="20" y1="200" x2="380" y2="200" stroke="#114b39"/>
+    <g font-size="11">
+      <rect x="20" y="220" width="115" height="58" rx="10" fill="#0c3527"/><text x="34" y="242" fill="#9deecb">Net worth</text><text x="34" y="266" fill="#eafff6" font-size="16" font-weight="700">&#8377;8.4L</text>
+      <rect x="143" y="220" width="115" height="58" rx="10" fill="#0c3527"/><text x="157" y="242" fill="#9deecb">Auto-cat</text><text x="157" y="266" fill="#eafff6" font-size="16" font-weight="700">95%</text>
+      <rect x="266" y="220" width="114" height="58" rx="10" fill="#0c3527"/><text x="280" y="242" fill="#9deecb">Anomalies</text><text x="280" y="266" fill="#f87171" font-size="16" font-weight="700">3 flagged</text>
+    </g>
+  </g>
+  <!-- LLM advisor -->
+  <g transform="translate(452,100)">
+    <rect width="316" height="300" rx="16" fill="#06231b" stroke="#114b39"/>
+    <circle cx="44" cy="42" r="18" fill="#34d399"/><text x="36" y="48" fill="#06231b" font-size="16">&#129302;</text>
+    <text x="74" y="38" fill="#eafff6" font-size="14" font-weight="600">FinSight advisor</text>
+    <text x="74" y="56" fill="#6ee7b7" font-size="11">Gemini &#183; Claude &#183; HF</text>
+    <rect x="20" y="80" width="276" height="9" rx="4" fill="#114b39"/><rect x="20" y="98" width="230" height="9" rx="4" fill="#114b39"/>
+    <text x="20" y="140" fill="#9deecb" font-size="12">&#129534; Receipt OCR</text>
+    <text x="20" y="166" fill="#9deecb" font-size="12">&#128176; Portfolio P&amp;L</text>
+    <text x="20" y="192" fill="#9deecb" font-size="12">&#128202; Spending DNA</text>
+    <rect x="20" y="214" width="276" height="64" rx="10" fill="#34d399" opacity="0.12"/>
+    <text x="34" y="240" fill="#34d399" font-size="11">MERN &#183; FastAPI ML &#183; PyOD</text>
+    <text x="34" y="262" fill="#34d399" font-size="11">Redis &#183; Docker &#183; Socket.IO</text>
+  </g>
+</svg>

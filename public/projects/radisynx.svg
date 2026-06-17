@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Inter, sans-serif">
+  <defs>
+    <linearGradient id="bgR" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a0a1c"/><stop offset="1" stop-color="#0a040a"/></linearGradient>
+    <radialGradient id="glR" cx="50%" cy="30%" r="62%"><stop offset="0" stop-color="#ec4899" stop-opacity="0.3"/><stop offset="1" stop-color="#ec4899" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bgR)"/><rect width="800" height="500" fill="url(#glR)"/>
+  <text x="32" y="48" fill="#ffe9f4" font-size="22" font-weight="700">RadiSynx</text>
+  <text x="32" y="70" fill="#f0a6c8" font-size="13">MRI &#8594; CT synthesis &#183; U-Net + GAN + Diffusion</text>
+  <text x="700" y="56" fill="#ec4899" font-size="26" text-anchor="middle">&#129466;</text>
+  <!-- MRI input -->
+  <g transform="translate(32,110)">
+    <rect width="180" height="180" rx="14" fill="#1f0a16" stroke="#552036"/>
+    <text x="16" y="30" fill="#f0a6c8" font-size="12">MRI input</text>
+    <circle cx="90" cy="110" r="62" fill="#3a1528"/><circle cx="90" cy="110" r="40" fill="#5a1f3d"/><circle cx="72" cy="96" r="12" fill="#7a2b53"/><circle cx="110" cy="120" r="16" fill="#7a2b53"/>
+  </g>
+  <!-- pipeline arrows -->
+  <g transform="translate(224,200)">
+    <g font-size="10" fill="#ffe9f4" text-anchor="middle">
+      <rect x="0" y="-44" width="96" height="32" rx="8" fill="#ec4899" opacity="0.2"/><text x="48" y="-23">Attn U-Net</text>
+      <rect x="0" y="-4" width="96" height="32" rx="8" fill="#ec4899" opacity="0.2"/><text x="48" y="17">Pix2Pix GAN</text>
+      <rect x="0" y="36" width="96" height="32" rx="8" fill="#ec4899" opacity="0.2"/><text x="48" y="57">DDPM diffuse</text>
+    </g>
+    <text x="120" y="16" fill="#ec4899" font-size="22">&#8594;</text>
+  </g>
+  <!-- CT output -->
+  <g transform="translate(372,110)">
+    <rect width="180" height="180" rx="14" fill="#1f0a16" stroke="#552036"/>
+    <text x="16" y="30" fill="#f0a6c8" font-size="12">Synthetic CT</text>
+    <circle cx="90" cy="110" r="62" fill="#0e0e12"/><circle cx="90" cy="110" r="40" fill="#d4d4d8" opacity="0.85"/><circle cx="72" cy="96" r="12" fill="#52525b"/><circle cx="110" cy="120" r="16" fill="#71717a"/>
+  </g>
+  <!-- metrics + gradcam -->
+  <g transform="translate(580,110)">
+    <rect width="188" height="180" rx="14" fill="#1f0a16" stroke="#552036"/>
+    <text x="16" y="30" fill="#f0a6c8" font-size="12">Metrics &#183; Grad-CAM</text>
+    <g font-size="12">
+      <text x="16" y="62" fill="#ffe9f4">SSIM</text><text x="150" y="62" fill="#34d399" text-anchor="end">0.94</text>
+      <text x="16" y="90" fill="#ffe9f4">PSNR</text><text x="150" y="90" fill="#34d399" text-anchor="end">31.2</text>
+      <text x="16" y="118" fill="#ffe9f4">Dice</text><text x="150" y="118" fill="#34d399" text-anchor="end">0.91</text>
+    </g>
+    <rect x="16" y="134" width="156" height="28" rx="8" fill="#ec4899" opacity="0.14"/><text x="28" y="153" fill="#ec4899" font-size="11">DICOM / NIfTI &#183; WebSocket</text>
+  </g>
+  <rect x="32" y="320" width="736" height="30" rx="8" fill="#ec4899" opacity="0.12"/>
+  <text x="48" y="340" fill="#f0a6c8" font-size="12">&#9889; PyTorch &#183; FastAPI &#183; Next.js 14 &#183; real-time slice streaming &#183; Grad-CAM explainability</text>
+</svg>

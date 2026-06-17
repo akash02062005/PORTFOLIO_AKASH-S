@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Inter, sans-serif">
+  <defs>
+    <linearGradient id="bgB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#04211b"/><stop offset="1" stop-color="#04070f"/></linearGradient>
+    <radialGradient id="glB" cx="50%" cy="32%" r="62%"><stop offset="0" stop-color="#2dd4bf" stop-opacity="0.32"/><stop offset="1" stop-color="#2dd4bf" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bgB)"/><rect width="800" height="500" fill="url(#glB)"/>
+  <text x="32" y="48" fill="#e6fffa" font-size="22" font-weight="700">Aura Care</text>
+  <text x="32" y="70" fill="#5eead4" font-size="13">Mental-wellness platform · AI chatbot · therapy booking</text>
+  <text x="694" y="58" fill="#34d399" font-size="26" text-anchor="middle">🍀</text>
+  <!-- mood chart -->
+  <g transform="translate(32,100)">
+    <rect width="360" height="230" rx="16" fill="#06231d" stroke="#114b3f"/>
+    <text x="20" y="34" fill="#9deedd" font-size="13">Weekly wellness score</text>
+    <polyline fill="none" stroke="#2dd4bf" stroke-width="3" points="30,150 80,120 130,135 180,90 230,100 280,60 330,70"/>
+    <g fill="#2dd4bf"><circle cx="30" cy="150" r="4"/><circle cx="180" cy="90" r="4"/><circle cx="280" cy="60" r="4"/><circle cx="330" cy="70" r="4"/></g>
+    <line x1="20" y1="186" x2="340" y2="186" stroke="#114b3f"/>
+    <text x="20" y="208" fill="#5eead4" font-size="11">Mon  Tue  Wed  Thu  Fri  Sat  Sun</text>
+  </g>
+  <!-- chatbot + booking -->
+  <g transform="translate(420,100)">
+    <rect width="348" height="110" rx="14" fill="#06231d" stroke="#114b3f"/>
+    <circle cx="48" cy="44" r="20" fill="#2dd4bf"/><text x="42" y="50" fill="#04211b" font-size="18">🤖</text>
+    <text x="82" y="40" fill="#e6fffa" font-size="14" font-weight="600">AI Wellness Chat</text>
+    <rect x="82" y="56" width="150" height="9" rx="4" fill="#114b3f"/><rect x="82" y="72" width="210" height="9" rx="4" fill="#114b3f"/>
+    <text x="20" y="160" fill="#9deedd" font-size="13" transform="translate(0,40)"></text>
+    <rect y="124" width="348" height="176" rx="14" fill="#06231d" stroke="#114b3f"/>
+    <text x="20" y="156" fill="#9deedd" font-size="13">📅 Book a therapist</text>
+    <g>
+      <rect x="20" y="172" width="100" height="44" rx="10" fill="#0d3a30" stroke="#114b3f"/><text x="34" y="190" fill="#e6fffa" font-size="12">Dr. Mehta</text><text x="34" y="208" fill="#5eead4" font-size="10">10:00 AM</text>
+      <rect x="130" y="172" width="100" height="44" rx="10" fill="#0d3a30" stroke="#114b3f"/><text x="144" y="190" fill="#e6fffa" font-size="12">Dr. Rao</text><text x="144" y="208" fill="#5eead4" font-size="10">02:30 PM</text>
+      <rect x="240" y="172" width="88" height="44" rx="10" fill="#2dd4bf" opacity="0.18"/><text x="254" y="190" fill="#2dd4bf" font-size="12">+ more</text>
+    </g>
+    <rect x="20" y="232" width="308" height="28" rx="8" fill="#2dd4bf" opacity="0.12"/>
+    <text x="34" y="251" fill="#2dd4bf" font-size="12">⚡ React · Node · PostgreSQL · Drizzle · Socket.IO</text>
+  </g>
+</svg>

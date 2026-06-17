@@ -1,0 +1,216 @@
+import { useMemo, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Trophy, X, Award, MapPin, Users, Layers } from 'lucide-react'
+import SectionTitle from '../ui/SectionTitle'
+import { events, eventTypes, eventCount, eventTypeCount, certTotal } from '../../data/events'
+
+export default function Events() {
+  const [filter, setFilter] = useState('all')
+  const [lightbox, setLightbox] = useState(null) // { event, idx }
+
+  const accentOf = (id) => eventTypes.find((t) => t.id === id)?.accent || '#22d3ee'
+  const labelOf = (id) => eventTypes.find((t) => t.id === id)?.label || id
+
+  const visibleTypes = useMemo(
+    () => eventTypes.filter((t) => events.some((e) => e.type === t.id)),
+    []
+  )
+
+  const shown = filter === 'all' ? events : events.filter((e) => e.type === filter)
+
+  const openCert = lightbox ? lightbox.event.certs[lightbox.idx] : null
+
+  return (
+    <section id="events" className="relative">
+      <div className="aurora left-[-10%] top-24 h-72 w-72 bg-neon-pink/30" />
+      <div className="aurora right-[-12%] bottom-10 h-72 w-72 bg-neon-violet/30" />
+
+      <div className="section-pad relative">
+        <SectionTitle
+          eyebrow="04 · Arena Log"
+          title="Competitions & events"
+          subtitle={`${eventCount} events · ${certTotal} certificates across ${eventTypeCount} arenas — hackathons, coding battles, quizzes, challenges and paper presentations.`}
+        />
+
+        {/* type filter chips */}
+        <div className="mt-8 flex flex-wrap gap-2">
+          {[{ id: 'all', label: 'All', accent: '#e2e8f0' }, ...visibleTypes].map((t) => {
+            const active = filter === t.id
+            const count =
+              t.id === 'all' ? events.length : events.filter((e) => e.type === t.id).length
+            return (
+              <button
+                key={t.id}
+                onClick={() => setFilter(t.id)}
+                className={`relative rounded-full px-4 py-2 text-sm font-medium transition ${
+                  active ? 'text-ink' : 'text-slate-300 hover:text-white'
+                }`}
+              >
+                {active && (
+                  <motion.span
+                    layoutId="eventPill"
+                    className="absolute inset-0 rounded-full bg-gradient-to-r from-neon-cyan to-neon-violet"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative">
+                  {t.label}
+                  <span className={`ml-1.5 ${active ? 'text-ink/70' : 'text-slate-500'}`}>
+                    {count}
+                  </span>
+                </span>
+              </button>
+            )
+          })}
+        </div>
+
+        {/* certificate gallery */}
+        <motion.div layout className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <AnimatePresence mode="popLayout">
+            {shown.map((e, i) => {
+              const accent = accentOf(e.type)
+              const multi = e.certs.length > 1
+              const meta = multi
+                ? e.certs.map((c) => c.issuer).filter(Boolean).join(' + ')
+                : e.certs[0].date
+              return (
+                <motion.button
+                  key={e.title}
+                  layout
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ delay: (i % 9) * 0.04 }}
+                  onClick={() => setLightbox({ event: e, idx: 0 })}
+                  className="glass glass-hover group cursor-pointer overflow-hidden rounded-2xl text-left"
+                >
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-black/40">
+                    <img
+                      src={e.certs[0].image}
+                      alt={e.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                    {/* stacked layers behind for multi-cert */}
+                    <span
+                      className="absolute left-2 top-2 rounded-full px-2 py-0.5 text-[10px] font-semibold"
+                      style={{ background: `${accent}26`, color: accent }}
+                    >
+                      {labelOf(e.type)}
+                    </span>
+                    {multi && (
+                      <span className="absolute bottom-2 left-2 inline-flex items-center gap-1 rounded-full bg-black/60 px-2 py-0.5 text-[10px] font-semibold text-white backdrop-blur">
+                        <Layers size={11} /> {e.certs.length} certs
+                      </span>
+                    )}
+                    {e.result && e.result !== 'Participant' && (
+                      <span className="absolute right-2 top-2 rounded-full bg-amber-300/20 px-2 py-0.5 text-[10px] font-semibold text-amber-300">
+                        {e.result}
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex items-start justify-between gap-2 p-3.5">
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium leading-snug text-white">{e.title}</p>
+                      <p className="mt-1 truncate text-[11px] text-slate-400">{e.org}</p>
+                      {meta && <p className="mt-1 font-mono text-[11px] text-slate-500">{meta}</p>}
+                    </div>
+                    <Trophy size={16} className="mt-0.5 shrink-0" style={{ color: accent }} />
+                  </div>
+                </motion.button>
+              )
+            })}
+          </AnimatePresence>
+        </motion.div>
+      </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightbox(null)}
+            className="fixed inset-0 z-[80] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.92, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.92, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 24 }}
+              onClick={(ev) => ev.stopPropagation()}
+              className="relative w-full max-w-3xl"
+            >
+              <button
+                onClick={() => setLightbox(null)}
+                className="absolute -top-12 right-0 rounded-lg border border-white/15 bg-white/5 p-2 text-slate-200 transition hover:text-white"
+              >
+                <X size={18} />
+              </button>
+              <div className="glass overflow-hidden rounded-2xl">
+                <img
+                  src={openCert.image}
+                  alt={lightbox.event.title}
+                  className="w-full bg-black/40 object-contain"
+                />
+                <div className="border-t border-white/10 p-4">
+                  <div className="flex items-center gap-2">
+                    <Award size={16} style={{ color: accentOf(lightbox.event.type) }} />
+                    <span className="text-sm font-medium text-white">{lightbox.event.title}</span>
+                    {lightbox.event.result && lightbox.event.result !== 'Participant' && (
+                      <span className="rounded-full bg-amber-300/20 px-2 py-0.5 text-[10px] font-semibold text-amber-300">
+                        {lightbox.event.result}
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-xs text-slate-400">
+                    <span className="inline-flex items-center gap-1">
+                      <MapPin size={12} /> {lightbox.event.org}
+                    </span>
+                    {lightbox.event.sub && (
+                      <span className="inline-flex items-center gap-1">
+                        <Users size={12} /> {lightbox.event.sub}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* cert switcher when an event has multiple certificates */}
+                  {lightbox.event.certs.length > 1 ? (
+                    <div className="mt-3 flex flex-wrap items-center gap-2">
+                      <span className="text-[11px] text-slate-500">Certificate:</span>
+                      {lightbox.event.certs.map((c, ci) => {
+                        const on = ci === lightbox.idx
+                        return (
+                          <button
+                            key={c.image}
+                            onClick={() => setLightbox({ event: lightbox.event, idx: ci })}
+                            className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition ${
+                              on
+                                ? 'border-neon-cyan/60 bg-neon-cyan/15 text-white'
+                                : 'border-white/10 bg-white/5 text-slate-300 hover:text-white'
+                            }`}
+                          >
+                            {c.issuer}
+                            {c.date ? ` · ${c.date}` : ''}
+                          </button>
+                        )
+                      })}
+                    </div>
+                  ) : (
+                    openCert.date && (
+                      <p className="mt-2 font-mono text-xs text-slate-500">
+                        {openCert.issuer ? `${openCert.issuer} · ` : ''}
+                        {openCert.date}
+                      </p>
+                    )
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  )
+}

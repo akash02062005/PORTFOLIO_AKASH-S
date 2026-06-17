@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Inter, sans-serif">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#06180f"/><stop offset="1" stop-color="#04070f"/></linearGradient>
+    <radialGradient id="gl3" cx="50%" cy="35%" r="60%"><stop offset="0" stop-color="#34d399" stop-opacity="0.3"/><stop offset="1" stop-color="#34d399" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg3)"/><rect width="800" height="500" fill="url(#gl3)"/>
+  <text x="32" y="48" fill="#e5e7eb" font-size="22" font-weight="700">Lancera</text>
+  <text x="32" y="70" fill="#64748b" font-size="13">AI freelancer marketplace &#183; reverse auction</text>
+  <g transform="translate(690,46)"><circle r="30" fill="#fcd34d" opacity="0.18"/><text y="6" fill="#fcd34d" font-size="22" text-anchor="middle">&#127942;</text><text y="48" fill="#fcd34d" font-size="11" text-anchor="middle">Hackwise 1st</text></g>
+  <g>
+    <rect x="32" y="100" width="340" height="120" rx="14" fill="#0b0f24" stroke="#1e293b"/>
+    <circle cx="72" cy="140" r="22" fill="#34d399"/><text x="106" y="135" fill="#e5e7eb" font-size="15" font-weight="600">AI Engineer &#183; vetted</text>
+    <text x="106" y="158" fill="#64748b" font-size="12">AI quiz passed &#183; 94% match</text>
+    <rect x="106" y="172" width="200" height="8" rx="4" fill="#1e293b"/><rect x="106" y="172" width="188" height="8" rx="4" fill="#34d399"/>
+    <rect x="32" y="232" width="340" height="120" rx="14" fill="#0b0f24" stroke="#1e293b"/>
+    <circle cx="72" cy="272" r="22" fill="#22d3ee"/><text x="106" y="267" fill="#e5e7eb" font-size="15" font-weight="600">Full-Stack Dev</text>
+    <text x="106" y="290" fill="#64748b" font-size="12">bid feedback: FAIR &#183; win 71%</text>
+    <rect x="106" y="304" width="200" height="8" rx="4" fill="#1e293b"/><rect x="106" y="304" width="176" height="8" rx="4" fill="#22d3ee"/>
+  </g>
+  <g transform="translate(420,110)">
+    <rect width="350" height="300" rx="16" fill="#0b0f24" stroke="#1e293b"/>
+    <text x="20" y="34" fill="#94a3b8" font-size="13">Live reverse-auction bids</text>
+    <polyline fill="none" stroke="#34d399" stroke-width="3" points="30,80 80,110 130,100 180,150 230,140 280,200 320,210"/>
+    <g fill="#34d399"><circle cx="30" cy="80" r="4"/><circle cx="130" cy="100" r="4"/><circle cx="230" cy="140" r="4"/><circle cx="320" cy="210" r="4"/></g>
+    <line x1="20" y1="240" x2="330" y2="240" stroke="#1e293b"/>
+    <rect x="20" y="258" width="310" height="28" rx="8" fill="#34d399" opacity="0.12"/>
+    <text x="34" y="277" fill="#34d399" font-size="12">&#9889; Socket.IO &#183; JWT/OTP &#183; Razorpay</text>
+  </g>
+</svg>

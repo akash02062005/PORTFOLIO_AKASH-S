@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Inter, sans-serif">
+  <defs>
+    <linearGradient id="bgN" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#150a2e"/><stop offset="1" stop-color="#05030f"/></linearGradient>
+    <radialGradient id="glN" cx="50%" cy="30%" r="62%"><stop offset="0" stop-color="#8b5cf6" stop-opacity="0.32"/><stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bgN)"/><rect width="800" height="500" fill="url(#glN)"/>
+  <text x="32" y="48" fill="#f1e9ff" font-size="22" font-weight="700">NeuroSense AI</text>
+  <text x="32" y="70" fill="#b9a6e8" font-size="13">Multi-modal fusion &#183; speech &#183; face &#183; text &#183; physio</text>
+  <text x="700" y="56" fill="#8b5cf6" font-size="26" text-anchor="middle">&#129504;</text>
+  <!-- modality nodes feeding fusion -->
+  <g transform="translate(32,110)">
+    <g font-size="11" fill="#f1e9ff">
+      <rect x="0" y="0" width="120" height="40" rx="10" fill="#1c1140" stroke="#3b2a66"/><text x="14" y="18">&#127908; Speech</text><text x="14" y="33" fill="#b9a6e8">Wav2Vec2</text>
+      <rect x="0" y="56" width="120" height="40" rx="10" fill="#1c1140" stroke="#3b2a66"/><text x="14" y="74">&#128100; Facial</text><text x="14" y="89" fill="#b9a6e8">ViT</text>
+      <rect x="0" y="112" width="120" height="40" rx="10" fill="#1c1140" stroke="#3b2a66"/><text x="14" y="130">&#128172; Text</text><text x="14" y="145" fill="#b9a6e8">RoBERTa</text>
+      <rect x="0" y="168" width="120" height="40" rx="10" fill="#1c1140" stroke="#3b2a66"/><text x="14" y="186">&#128147; Physio</text><text x="14" y="201" fill="#b9a6e8">rPPG</text>
+    </g>
+    <g stroke="#8b5cf6" stroke-width="2" opacity="0.6">
+      <line x1="120" y1="20" x2="200" y2="104"/><line x1="120" y1="76" x2="200" y2="104"/><line x1="120" y1="132" x2="200" y2="104"/><line x1="120" y1="188" x2="200" y2="104"/>
+    </g>
+    <circle cx="220" cy="104" r="30" fill="#8b5cf6" opacity="0.3"/><circle cx="220" cy="104" r="18" fill="#8b5cf6"/>
+    <text x="220" y="160" fill="#c4b5fd" font-size="11" text-anchor="middle">cross-modal</text>
+    <text x="220" y="174" fill="#c4b5fd" font-size="11" text-anchor="middle">transformer</text>
+  </g>
+  <!-- wellness score + explain -->
+  <g transform="translate(440,100)">
+    <rect width="328" height="140" rx="14" fill="#1c1140" stroke="#3b2a66"/>
+    <text x="20" y="34" fill="#b9a6e8" font-size="13">Real-time wellness score</text>
+    <text x="20" y="92" fill="#34d399" font-size="44" font-weight="700">78</text>
+    <text x="120" y="92" fill="#b9a6e8" font-size="14">/ 100 &#183; improving</text>
+    <rect x="20" y="108" width="288" height="10" rx="5" fill="#3b2a66"/><rect x="20" y="108" width="225" height="10" rx="5" fill="#34d399"/>
+    <rect y="156" width="328" height="124" rx="14" fill="#1c1140" stroke="#3b2a66"/>
+    <text x="20" y="184" fill="#b9a6e8" font-size="13">Explainable AI &#183; SHAP attribution</text>
+    <g>
+      <text x="20" y="212" fill="#f1e9ff" font-size="11">speech</text><rect x="90" y="203" width="120" height="10" rx="5" fill="#8b5cf6"/><text x="220" y="212" fill="#c4b5fd" font-size="11">0.42</text>
+      <text x="20" y="234" fill="#f1e9ff" font-size="11">face</text><rect x="90" y="225" width="88" height="10" rx="5" fill="#22d3ee"/><text x="220" y="234" fill="#c4b5fd" font-size="11">0.31</text>
+      <text x="20" y="256" fill="#f1e9ff" font-size="11">text</text><rect x="90" y="247" width="76" height="10" rx="5" fill="#f472b6"/><text x="220" y="256" fill="#c4b5fd" font-size="11">0.27</text>
+    </g>
+  </g>
+  <rect x="32" y="350" width="736" height="30" rx="8" fill="#8b5cf6" opacity="0.12"/>
+  <text x="48" y="370" fill="#c4b5fd" font-size="12">&#9889; FastAPI &#183; Next.js 14 &#183; PyTorch &#183; WebSocket streaming &#183; &lt;600ms latency &#183; crisis detection</text>
+</svg>

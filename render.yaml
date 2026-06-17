@@ -1,0 +1,14 @@
+# Render Blueprint — deploys the portfolio as a static site.
+# In Render: New ▸ Blueprint ▸ pick this repo, or just use the manual steps.
+services:
+  - type: web
+    name: akash-portfolio
+    runtime: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    pullRequestPreviewsEnabled: true
+    # SPA fallback (harmless with hash routing, future-proof if you switch routers)
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

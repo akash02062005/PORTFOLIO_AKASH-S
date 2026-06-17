@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Inter, sans-serif">
+  <defs>
+    <linearGradient id="bgO" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1330"/><stop offset="1" stop-color="#04070f"/></linearGradient>
+    <radialGradient id="glO" cx="50%" cy="30%" r="62%"><stop offset="0" stop-color="#60a5fa" stop-opacity="0.32"/><stop offset="1" stop-color="#60a5fa" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bgO)"/><rect width="800" height="500" fill="url(#glO)"/>
+  <text x="32" y="48" fill="#eaf2ff" font-size="22" font-weight="700">OrderStream</text>
+  <text x="32" y="70" fill="#93b4f5" font-size="13">Spring Boot OMS · OAuth2 · magic links · Razorpay</text>
+  <text x="694" y="58" fill="#60a5fa" font-size="26" text-anchor="middle">📦</text>
+  <!-- sales chart -->
+  <g transform="translate(32,100)">
+    <rect width="360" height="230" rx="16" fill="#0a1330" stroke="#22325c"/>
+    <text x="20" y="34" fill="#aac4f7" font-size="13">Sales telemetry · order volume</text>
+    <g fill="#60a5fa">
+      <rect x="34" y="150" width="34" height="46" rx="4"/><rect x="86" y="120" width="34" height="76" rx="4"/><rect x="138" y="134" width="34" height="62" rx="4"/>
+      <rect x="190" y="92" width="34" height="104" rx="4" fill="#3b82f6"/><rect x="242" y="108" width="34" height="88" rx="4"/><rect x="294" y="70" width="34" height="126" rx="4" fill="#3b82f6"/>
+    </g>
+    <line x1="20" y1="196" x2="340" y2="196" stroke="#22325c"/>
+  </g>
+  <!-- order list + auth -->
+  <g transform="translate(420,100)">
+    <rect width="348" height="130" rx="14" fill="#0a1330" stroke="#22325c"/>
+    <text x="20" y="34" fill="#aac4f7" font-size="13">Recent orders</text>
+    <g font-size="12">
+      <text x="20" y="62" fill="#eaf2ff">#OS-1042 · ₹4,299</text><rect x="250" y="50" width="78" height="20" rx="10" fill="#34d399" opacity="0.18"/><text x="262" y="64" fill="#34d399">Paid</text>
+      <text x="20" y="90" fill="#eaf2ff">#OS-1041 · ₹1,150</text><rect x="250" y="78" width="78" height="20" rx="10" fill="#f59e0b" opacity="0.18"/><text x="262" y="92" fill="#f59e0b">Pending</text>
+      <text x="20" y="118" fill="#eaf2ff">#OS-1040 · ₹8,760</text><rect x="250" y="106" width="78" height="20" rx="10" fill="#34d399" opacity="0.18"/><text x="262" y="120" fill="#34d399">Paid</text>
+    </g>
+    <rect y="146" width="348" height="78" rx="14" fill="#0a1330" stroke="#22325c"/>
+    <text x="20" y="174" fill="#aac4f7" font-size="12">Multi-channel auth · RBAC</text>
+    <g font-size="11">
+      <rect x="20" y="186" width="74" height="26" rx="13" fill="#60a5fa" opacity="0.18"/><text x="32" y="204" fill="#93b4f5">Google</text>
+      <rect x="102" y="186" width="74" height="26" rx="13" fill="#8b5cf6" opacity="0.18"/><text x="114" y="204" fill="#c4b5fd">GitHub</text>
+      <rect x="184" y="186" width="86" height="26" rx="13" fill="#22d3ee" opacity="0.18"/><text x="196" y="204" fill="#67e8f9">Magic link</text>
+    </g>
+    <rect y="244" width="348" height="32" rx="8" fill="#60a5fa" opacity="0.12" transform="translate(0,12)"/>
+    <text x="20" y="270" fill="#60a5fa" font-size="12">⚡ Spring Security · JWT · MongoDB · Razorpay</text>
+  </g>
+</svg>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Inter, sans-serif">
+  <defs>
+    <linearGradient id="bgFC" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a1505"/><stop offset="1" stop-color="#0a0703"/></linearGradient>
+    <radialGradient id="glFC" cx="50%" cy="30%" r="62%"><stop offset="0" stop-color="#f97316" stop-opacity="0.32"/><stop offset="1" stop-color="#f97316" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bgFC)"/><rect width="800" height="500" fill="url(#glFC)"/>
+  <text x="32" y="48" fill="#fff1e6" font-size="22" font-weight="700">FitCare</text>
+  <text x="32" y="70" fill="#fbbf90" font-size="13">AI fitness &#183; diet plans &#183; mood music &#183; challenges</text>
+  <text x="700" y="56" fill="#f97316" font-size="26" text-anchor="middle">&#127947;</text>
+  <!-- diet plan card -->
+  <g transform="translate(32,100)">
+    <rect width="240" height="300" rx="16" fill="#1f1206" stroke="#4d2f12"/>
+    <text x="18" y="34" fill="#fbbf90" font-size="13">AI diet plan</text>
+    <g font-size="12">
+      <rect x="18" y="50" width="204" height="40" rx="9" fill="#2c1a09"/><text x="32" y="68" fill="#fff1e6">Keto</text><text x="200" y="68" fill="#22c55e" text-anchor="end">1,800 kcal</text>
+      <rect x="18" y="98" width="204" height="40" rx="9" fill="#2c1a09"/><text x="32" y="116" fill="#fff1e6">Vegan</text><text x="200" y="116" fill="#22c55e" text-anchor="end">balanced</text>
+      <rect x="18" y="146" width="204" height="40" rx="9" fill="#2c1a09"/><text x="32" y="164" fill="#fff1e6">Indian</text><text x="200" y="164" fill="#22c55e" text-anchor="end">high protein</text>
+    </g>
+    <text x="18" y="220" fill="#fbbf90" font-size="13">BMI</text>
+    <rect x="18" y="232" width="204" height="12" rx="6" fill="#2c1a09"/><rect x="18" y="232" width="128" height="12" rx="6" fill="#f97316"/>
+    <circle cx="146" cy="238" r="9" fill="#fff1e6"/>
+    <text x="18" y="272" fill="#22c55e" font-size="14" font-weight="700">22.4 &#183; Healthy</text>
+  </g>
+  <!-- music + quiz -->
+  <g transform="translate(288,100)">
+    <rect width="220" height="145" rx="14" fill="#1f1206" stroke="#4d2f12"/>
+    <text x="18" y="32" fill="#fbbf90" font-size="13">Mood music</text>
+    <g fill="#f97316"><rect x="18" y="50" width="8" height="40" rx="3"/><rect x="34" y="62" width="8" height="28" rx="3"/><rect x="50" y="44" width="8" height="46" rx="3"/><rect x="66" y="58" width="8" height="32" rx="3"/><rect x="82" y="50" width="8" height="40" rx="3"/></g>
+    <rect x="110" y="54" width="92" height="22" rx="11" fill="#22c55e" opacity="0.2"/><text x="124" y="69" fill="#22c55e" font-size="11">Energetic</text>
+    <text x="18" y="118" fill="#fbbf90" font-size="11">&#127925; Spotify &#183; YouTube</text>
+    <rect y="160" width="220" height="140" rx="14" fill="#1f1206" stroke="#4d2f12"/>
+    <text x="18" y="192" fill="#fbbf90" font-size="13">Fitness personality</text>
+    <circle cx="50" cy="240" r="26" fill="#f97316" opacity="0.25"/><text x="50" y="246" fill="#f97316" font-size="22" text-anchor="middle">&#129504;</text>
+    <text x="92" y="234" fill="#fff1e6" font-size="13" font-weight="600">HIIT Hero</text>
+    <text x="92" y="254" fill="#fbbf90" font-size="11">40+ archetypes</text>
+  </g>
+  <!-- challenge -->
+  <g transform="translate(524,100)">
+    <rect width="244" height="300" rx="16" fill="#1f1206" stroke="#4d2f12"/>
+    <text x="18" y="34" fill="#fbbf90" font-size="13">Weekly challenge</text>
+    <g font-size="12">
+      <rect x="18" y="50" width="208" height="36" rx="9" fill="#2c1a09"/><text x="34" y="73" fill="#fff1e6">&#9989; Sprint protocol</text>
+      <rect x="18" y="94" width="208" height="36" rx="9" fill="#2c1a09"/><text x="34" y="117" fill="#fff1e6">&#9989; Clean eating</text>
+      <rect x="18" y="138" width="208" height="36" rx="9" fill="#2c1a09"/><text x="34" y="161" fill="#fff1e6">&#9203; Sleep optimization</text>
+      <rect x="18" y="182" width="208" height="36" rx="9" fill="#2c1a09"/><text x="34" y="205" fill="#fff1e6">&#9203; Strength building</text>
+    </g>
+    <rect x="18" y="236" width="208" height="46" rx="10" fill="#f97316" opacity="0.14"/>
+    <text x="32" y="256" fill="#f97316" font-size="11">React 19 &#183; Express 5 &#183; MongoDB</text>
+    <text x="32" y="274" fill="#f97316" font-size="11">Framer Motion &#183; Nodemailer</text>
+  </g>
+</svg>
