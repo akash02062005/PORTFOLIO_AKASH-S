@@ -162,6 +162,15 @@ export const certGroups = [
       { title: 'Essentials of C', image: '/certs/livewire-c.png', date: 'LiveWire (NSDC) · 2022' },
     ],
   },
+  {
+    issuer: 'Hindi · DBHPS',
+    accent: '#fb923c',
+    items: [
+      { title: 'Prathmik', image: '/certs/hindi-prathmik.png', date: 'First Class · Feb 2015' },
+      { title: 'Madhyama', image: '/certs/hindi-madhyama.png', date: 'First Class · Feb 2016' },
+      { title: 'Rashtrabhasha', image: '/certs/hindi-rashtrabhasha.png', date: 'Second Class · Aug 2016' },
+    ],
+  },
 ]
 
 // Flattened helpers

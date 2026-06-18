@@ -1,23 +1,33 @@
 import { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Trophy, X, Award, MapPin, Users, Layers, Medal } from 'lucide-react'
+import { Trophy, X, Award, MapPin, Users, Layers, Medal, Cpu, Sparkles } from 'lucide-react'
 import SectionTitle from '../ui/SectionTitle'
 import { events, venues, eventCount, certTotal, winCount } from '../../data/events'
 
 export default function Events() {
-  const [venue, setVenue] = useState('residential')
+  const [venue, setVenue] = useState('college')
   const [lightbox, setLightbox] = useState(null) // { event, idx }
 
   const meta = venues.find((v) => v.id === venue)
   const accent = meta?.accent || '#22d3ee'
+  const isCollege = venue === 'college'
 
   const inVenue = useMemo(() => events.filter((e) => e.venue === venue), [venue])
-  const wins = inVenue.filter((e) => e.award === 'winner')
-  const parts = inVenue.filter((e) => e.award === 'participation')
+  const groups = isCollege
+    ? [
+        { key: 't', label: 'Technical', icon: Cpu, items: inVenue.filter((e) => e.category === 'technical') },
+        { key: 'n', label: 'Non-technical', icon: Sparkles, items: inVenue.filter((e) => e.category === 'non-technical') },
+      ]
+    : [
+        { key: 'w', label: 'Wins & achievements', icon: Medal, items: inVenue.filter((e) => e.award === 'winner') },
+        { key: 'p', label: 'Participation', icon: Users, items: inVenue.filter((e) => e.award === 'participation') },
+      ]
+
   const openCert = lightbox ? lightbox.event.certs[lightbox.idx] : null
 
   const Card = (e) => {
     const multi = e.certs.length > 1
+    const hasPoints = e.points && e.points.length > 0
     return (
       <motion.button
         key={e.title}
@@ -26,7 +36,7 @@ export default function Events() {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95 }}
         onClick={() => setLightbox({ event: e, idx: 0 })}
-        className="glass glass-hover group cursor-pointer overflow-hidden rounded-2xl text-left"
+        className="glass glass-hover group flex cursor-pointer flex-col overflow-hidden rounded-2xl text-left"
       >
         <div className="relative aspect-[4/3] w-full overflow-hidden bg-black/40">
           <img
@@ -51,13 +61,29 @@ export default function Events() {
             </span>
           )}
         </div>
-        <div className="flex items-start justify-between gap-2 p-3.5">
-          <div className="min-w-0">
-            <p className="text-sm font-medium leading-snug text-white">{e.title}</p>
+
+        <div className="flex flex-1 flex-col p-4">
+          <p className="text-sm font-semibold leading-snug text-white">{e.title}</p>
+          {e.location ? (
+            <p className="mt-1 flex items-start gap-1 text-[11px] text-neon-cyan">
+              <MapPin size={11} className="mt-0.5 shrink-0" /> {e.location}
+            </p>
+          ) : (
             <p className="mt-1 truncate text-[11px] text-slate-400">{e.org}</p>
-            {e.sub && <p className="mt-1 line-clamp-1 text-[11px] text-slate-500">{e.sub}</p>}
-          </div>
-          <Trophy size={15} className="mt-0.5 shrink-0" style={{ color: accent }} />
+          )}
+
+          {hasPoints ? (
+            <ul className="mt-2.5 space-y-1.5">
+              {e.points.map((p, i) => (
+                <li key={i} className="flex gap-1.5 text-[11px] leading-snug text-slate-400">
+                  <span className="mt-1 h-1 w-1 shrink-0 rounded-full" style={{ background: accent }} />
+                  {p}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            e.sub && <p className="mt-1 line-clamp-1 text-[11px] text-slate-500">{e.sub}</p>
+          )}
         </div>
       </motion.button>
     )
@@ -105,30 +131,20 @@ export default function Events() {
         </div>
         <p className="mt-2 text-xs text-slate-500">{meta?.sub}</p>
 
-        {/* Wins */}
-        {wins.length > 0 && (
-          <div className="mt-10">
-            <h3 className="mb-4 flex items-center gap-2 font-display text-lg font-semibold text-white">
-              <Medal size={18} className="text-amber-300" /> Wins & achievements
-              <span className="text-sm font-normal text-slate-500">({wins.length})</span>
-            </h3>
-            <motion.div layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              <AnimatePresence mode="popLayout">{wins.map(Card)}</AnimatePresence>
-            </motion.div>
-          </div>
-        )}
-
-        {/* Participation */}
-        {parts.length > 0 && (
-          <div className="mt-12">
-            <h3 className="mb-4 flex items-center gap-2 font-display text-lg font-semibold text-white">
-              <Users size={18} style={{ color: accent }} /> Participation
-              <span className="text-sm font-normal text-slate-500">({parts.length})</span>
-            </h3>
-            <motion.div layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              <AnimatePresence mode="popLayout">{parts.map(Card)}</AnimatePresence>
-            </motion.div>
-          </div>
+        {groups.map(
+          (g) =>
+            g.items.length > 0 && (
+              <div key={g.key} className="mt-10">
+                <h3 className="mb-4 flex items-center gap-2 font-display text-lg font-semibold text-white">
+                  <g.icon size={18} style={{ color: g.key === 'w' ? '#fcd34d' : accent }} />
+                  {g.label}
+                  <span className="text-sm font-normal text-slate-500">({g.items.length})</span>
+                </h3>
+                <motion.div layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  <AnimatePresence mode="popLayout">{g.items.map(Card)}</AnimatePresence>
+                </motion.div>
+              </div>
+            )
         )}
       </div>
 
@@ -156,7 +172,7 @@ export default function Events() {
               >
                 <X size={18} />
               </button>
-              <div className="glass overflow-hidden rounded-2xl">
+              <div className="glass max-h-[85vh] overflow-y-auto rounded-2xl">
                 <img src={openCert.image} alt={lightbox.event.title} className="w-full bg-black/40 object-contain" />
                 <div className="border-t border-white/10 p-4">
                   <div className="flex flex-wrap items-center gap-2">
@@ -170,14 +186,19 @@ export default function Events() {
                   </div>
                   <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-xs text-slate-400">
                     <span className="inline-flex items-center gap-1">
-                      <MapPin size={12} /> {lightbox.event.org}
+                      <MapPin size={12} /> {lightbox.event.location || lightbox.event.org}
                     </span>
-                    {lightbox.event.sub && (
-                      <span className="inline-flex items-center gap-1">
-                        <Users size={12} /> {lightbox.event.sub}
-                      </span>
-                    )}
                   </div>
+                  {lightbox.event.points && (
+                    <ul className="mt-3 space-y-1.5">
+                      {lightbox.event.points.map((p, i) => (
+                        <li key={i} className="flex gap-2 text-xs text-slate-300">
+                          <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full" style={{ background: accent }} />
+                          {p}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
 
                   {lightbox.event.certs.length > 1 && (
                     <div className="mt-3 flex flex-wrap items-center gap-2">

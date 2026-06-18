@@ -474,3 +474,10 @@ export const hobbies = [
   { name: 'Building Side-Projects', color: '#f59e0b' },
   { name: 'Tech Blogging', color: '#ec4899' },
 ]
+
+// Languages known
+export const languages = [
+  { name: 'Tamil', level: 'Native', pct: 100, color: '#34d399' },
+  { name: 'English', level: 'Fluent', pct: 90, color: '#22d3ee' },
+  { name: 'Hindi', level: 'Intermediate', pct: 65, color: '#f59e0b', note: 'DBHPS — Prathmik · Madhyama · Rashtrabhasha' },
+]

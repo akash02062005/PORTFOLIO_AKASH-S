@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
-import { Trophy, GraduationCap, Heart, School } from 'lucide-react'
+import { Trophy, GraduationCap, Heart, School, Languages } from 'lucide-react'
 import SectionTitle from '../ui/SectionTitle'
 import { sports } from '../../data/events'
-import { schooling, hobbies } from '../../data/profile'
+import { schooling, hobbies, languages } from '../../data/profile'
 
 export default function BeyondCode() {
   return (
@@ -49,8 +49,8 @@ export default function BeyondCode() {
           ))}
         </div>
 
-        {/* Schooling + hobbies */}
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        {/* Schooling + languages + hobbies */}
+        <div className="mt-8 grid gap-6 lg:grid-cols-3">
           <div className="glass rounded-2xl p-6">
             <h3 className="mb-3 flex items-center gap-2 font-display text-lg font-semibold text-white">
               <School size={18} className="text-neon-cyan" /> Schooling
@@ -76,6 +76,27 @@ export default function BeyondCode() {
                     <p className="font-mono text-[11px] text-slate-500">{r.score}</p>
                   </div>
                   <span className="gradient-text font-display text-lg font-bold">{r.percent}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Languages */}
+          <div className="glass rounded-2xl p-6">
+            <h3 className="mb-4 flex items-center gap-2 font-display text-lg font-semibold text-white">
+              <Languages size={18} className="text-neon-cyan" /> Languages
+            </h3>
+            <div className="space-y-3.5">
+              {languages.map((l) => (
+                <div key={l.name}>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="font-medium text-white">{l.name}</span>
+                    <span className="text-xs text-slate-400">{l.level}</span>
+                  </div>
+                  <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+                    <div className="h-full rounded-full" style={{ width: `${l.pct}%`, background: l.color }} />
+                  </div>
+                  {l.note && <p className="mt-1 font-mono text-[10px] text-slate-500">{l.note}</p>}
                 </div>
               ))}
             </div>
