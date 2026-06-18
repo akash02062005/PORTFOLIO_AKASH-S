@@ -539,6 +539,23 @@ export const events = [
     result: 'Participant',
     certs: [{ image: '/events/scope-lark.png', issuer: 'School', date: '' }],
   },
+  {
+    venue: 'school', award: 'participation', type: 'challenge',
+    title: 'Tamil — Cultural & Competitions',
+    org: 'School & inter-school cultural events',
+    sub: 'Tamil language, oratory & cultural competitions',
+    result: 'Participant',
+    certs: [
+      { image: '/events/tamil-1.png', issuer: 'Cultural', date: '' },
+      { image: '/events/tamil-2.png', issuer: 'Cultural', date: '' },
+      { image: '/events/tamil-3.png', issuer: 'Cultural', date: '' },
+      { image: '/events/tamil-4.png', issuer: 'Cultural', date: '' },
+      { image: '/events/tamil-5.png', issuer: 'Cultural', date: '' },
+      { image: '/events/tamil-6.png', issuer: 'Cultural', date: '' },
+      { image: '/events/tamil-7.png', issuer: 'Cultural', date: '' },
+      { image: '/events/tamil-8.png', issuer: 'Cultural', date: '' },
+    ],
+  },
 
   // ══════════════ RESIDENTIAL (Valarnagar · Pongal Kondattam) ══════════════
   {
