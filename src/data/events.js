@@ -29,7 +29,12 @@ export const events = [
       'Secured 1st place (Winner) — Team Green Sync Innovators, ahead of 1,000+ teams.',
     ],
     result: 'Winner · 1st',
-    certs: [{ image: '/events/hackwise-prelims.png', issuer: 'Unstop', date: '2026' }],
+    photos: ['/events/hackwise-win-1.jpg', '/events/hackwise-win-2.jpg'],
+    certs: [
+      { image: '/events/hackwise-winner.png', issuer: 'Winner · 1st Place', date: 'Apr 2025' },
+      { image: '/events/hackwise-participation.png', issuer: 'Participation', date: 'Apr 2025' },
+      { image: '/events/hackwise-prelims.png', issuer: 'Unstop · Selection', date: 'Apr 2025' },
+    ],
   },
   {
     venue: 'college', award: 'winner', category: 'technical', type: 'paper',
@@ -56,6 +61,7 @@ export const events = [
       'Secured II Prize.',
     ],
     result: 'II Prize',
+    photos: ['/events/sethu-win-1.jpg'],
     certs: [{ image: '/events/sethu-electroverse.png', issuer: 'Sethu IT', date: 'Feb 2026' }],
   },
   {
@@ -390,18 +396,6 @@ export const events = [
     result: 'Participant',
     certs: [{ image: '/events/inextron-paper.png', issuer: 'EGS Pillay', date: 'Oct 2023' }],
   },
-  {
-    venue: 'college', award: 'participation', category: 'technical', type: 'challenge',
-    title: 'Network Security Workshop',
-    org: 'KRIYAVAN × PSNA CET (WiCyS Chapter)',
-    location: 'KRIYAVAN × PSNA CET · Dindigul, Tamil Nadu',
-    points: [
-      'Two-day workshop — "Approaches to Network Security for Aspiring Graduates".',
-      'Hands-on with cyber-forensics and network-defence basics.',
-    ],
-    result: 'Participant',
-    certs: [{ image: '/events/kriyavan-workshop.png', issuer: 'KRIYAVAN', date: 'Dec 2023' }],
-  },
 
   // ══════════════ COLLEGE · NON-TECHNICAL ══════════════
   {
@@ -507,11 +501,19 @@ export const events = [
   // ══════════════ SCHOOL ══════════════
   {
     venue: 'school', award: 'winner', type: 'challenge',
-    title: 'Certificate of Merit',
+    title: 'Mathematics — Top Score',
     org: 'Lakshmi School, Madurai',
-    sub: 'School achievement',
+    sub: 'Endowment Award · Class X',
+    result: 'Top Score',
+    certs: [{ image: '/events/lakshmi-maths.png', issuer: 'Lakshmi School', date: '2019–20' }],
+  },
+  {
+    venue: 'school', award: 'winner', type: 'sport',
+    title: 'Physical Education — Merit',
+    org: 'Lakshmi School, Madurai',
+    sub: 'PE achievement',
     result: 'Merit',
-    certs: [{ image: '/events/lakshmi-merit.png', issuer: 'Lakshmi School', date: '' }],
+    certs: [{ image: '/events/lakshmi-pe.png', issuer: 'Lakshmi School', date: '2020' }],
   },
   {
     venue: 'school', award: 'winner', type: 'sport',

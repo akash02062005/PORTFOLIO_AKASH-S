@@ -151,6 +151,7 @@ export const certGroups = [
       { title: 'Exploring Design with Figma', image: '/certs/figma-workshop.png', date: 'PSNA CSE · IEEE Student Branch · May 2024' },
       { title: 'IEEE Xplore — Research Discovery Webinar', image: '/certs/ieee-xplore-workshop.png', date: 'PSNA CET · EBSCO · Feb 2025' },
       { title: 'Cybersecurity Careers Unlocked', image: '/certs/cybersecurity-workshop.png', date: '13x Learning · Feb 2025' },
+      { title: 'Network Security & Cyber Forensics', image: '/events/kriyavan-workshop.png', date: 'KRIYAVAN × PSNA (WiCyS) · Dec 2023' },
     ],
   },
   {

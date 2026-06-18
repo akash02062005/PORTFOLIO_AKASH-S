@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Trophy, X, Award, MapPin, Users, Layers, Medal, Cpu, Sparkles } from 'lucide-react'
+import { Trophy, X, Award, MapPin, Users, Layers, Medal, Cpu, Sparkles, Camera, FileBadge } from 'lucide-react'
 import SectionTitle from '../ui/SectionTitle'
 import { events, venues, eventCount, certTotal, winCount } from '../../data/events'
 
@@ -23,7 +23,14 @@ export default function Events() {
         { key: 'p', label: 'Participation', icon: Users, items: inVenue.filter((e) => e.award === 'participation') },
       ]
 
-  const openCert = lightbox ? lightbox.event.certs[lightbox.idx] : null
+  // lightbox "views" = certificate(s) + winning photo(s)
+  const views = lightbox
+    ? [
+        ...lightbox.event.certs.map((c) => ({ image: c.image, label: c.issuer || 'Certificate', date: c.date, kind: 'cert' })),
+        ...(lightbox.event.photos || []).map((p, i) => ({ image: p, label: `Winning moment ${i + 1}`, date: '', kind: 'photo' })),
+      ]
+    : []
+  const openView = lightbox ? views[lightbox.idx] : null
 
   const Card = (e) => {
     const multi = e.certs.length > 1
@@ -58,6 +65,11 @@ export default function Events() {
           {multi && (
             <span className="absolute bottom-2 left-2 inline-flex items-center gap-1 rounded-full bg-black/60 px-2 py-0.5 text-[10px] font-semibold text-white backdrop-blur">
               <Layers size={11} /> {e.certs.length} certs
+            </span>
+          )}
+          {e.photos && e.photos.length > 0 && (
+            <span className="absolute bottom-2 right-2 inline-flex items-center gap-1 rounded-full bg-black/60 px-2 py-0.5 text-[10px] font-semibold text-white backdrop-blur">
+              <Camera size={11} /> {e.photos.length}
             </span>
           )}
         </div>
@@ -150,7 +162,7 @@ export default function Events() {
 
       {/* Lightbox */}
       <AnimatePresence>
-        {lightbox && (
+        {lightbox && openView && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -173,7 +185,7 @@ export default function Events() {
                 <X size={18} />
               </button>
               <div className="glass max-h-[85vh] overflow-y-auto rounded-2xl">
-                <img src={openCert.image} alt={lightbox.event.title} className="w-full bg-black/40 object-contain" />
+                <img src={openView.image} alt={lightbox.event.title} className="w-full bg-black/40 object-contain" />
                 <div className="border-t border-white/10 p-4">
                   <div className="flex flex-wrap items-center gap-2">
                     <Award size={16} style={{ color: accent }} />
@@ -200,23 +212,25 @@ export default function Events() {
                     </ul>
                   )}
 
-                  {lightbox.event.certs.length > 1 && (
+                  {views.length > 1 && (
                     <div className="mt-3 flex flex-wrap items-center gap-2">
-                      <span className="text-[11px] text-slate-500">Certificate:</span>
-                      {lightbox.event.certs.map((c, ci) => {
-                        const on = ci === lightbox.idx
+                      <span className="text-[11px] text-slate-500">View:</span>
+                      {views.map((v, vi) => {
+                        const on = vi === lightbox.idx
+                        const Icon = v.kind === 'photo' ? Camera : FileBadge
                         return (
                           <button
-                            key={c.image}
-                            onClick={() => setLightbox({ event: lightbox.event, idx: ci })}
-                            className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition ${
+                            key={v.image}
+                            onClick={() => setLightbox({ event: lightbox.event, idx: vi })}
+                            className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition ${
                               on
                                 ? 'border-neon-cyan/60 bg-neon-cyan/15 text-white'
                                 : 'border-white/10 bg-white/5 text-slate-300 hover:text-white'
                             }`}
                           >
-                            {c.issuer}
-                            {c.date ? ` · ${c.date}` : ''}
+                            <Icon size={12} />
+                            {v.label}
+                            {v.date ? ` · ${v.date}` : ''}
                           </button>
                         )
                       })}

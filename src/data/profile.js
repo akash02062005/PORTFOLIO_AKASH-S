@@ -420,8 +420,8 @@ export const skills = [
 export const achievements = [
   {
     title: '1st Place — Hackwise 2.0',
-    detail: 'National AI hackathon · beat 1,000+ teams',
-    year: '2026',
+    detail: 'National AI hackathon · KVG College of Engineering',
+    year: '2025',
     icon: 'trophy',
   },
   {
