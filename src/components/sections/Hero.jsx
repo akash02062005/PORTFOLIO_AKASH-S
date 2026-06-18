@@ -79,7 +79,7 @@ export default function Hero() {
         className="pointer-events-none absolute right-6 top-1/2 z-10 hidden -translate-y-1/2 text-right lg:block"
       >
         <span className="rounded-full border border-white/10 bg-black/40 px-3 py-1.5 font-mono text-[11px] text-neon-cyan backdrop-blur">
-          ◆ that's me — say hi
+          ◆ move your mouse to rotate me
         </span>
       </motion.div>
 

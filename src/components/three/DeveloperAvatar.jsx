@@ -1,4 +1,4 @@
-import { useRef, useMemo } from 'react'
+import { useRef, useMemo, useEffect } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { RoundedBox } from '@react-three/drei'
 import * as THREE from 'three'
@@ -19,6 +19,17 @@ const BLACK = '#191920'
 
 export default function DeveloperAvatar({ scale = 1 }) {
   const root = useRef()
+  const mouse = useRef({ x: 0, y: 0 })
+
+  // move the mouse anywhere on the page to rotate the avatar
+  useEffect(() => {
+    const onMove = (e) => {
+      mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1
+      mouse.current.y = (e.clientY / window.innerHeight) * 2 - 1
+    }
+    window.addEventListener('mousemove', onMove)
+    return () => window.removeEventListener('mousemove', onMove)
+  }, [])
 
   // laptop screen content drawn on a canvas → used as a texture
   const screenTex = useMemo(() => {
@@ -59,7 +70,12 @@ export default function DeveloperAvatar({ scale = 1 }) {
   useFrame((state) => {
     const t = state.clock.elapsedTime
     if (root.current) {
-      root.current.rotation.y = t * 0.5 // steady reveal of the laptop screen
+      // mouse drives the rotation — sweep left/right across the screen to spin
+      // the avatar all the way around and reveal the laptop screen
+      const targetY = mouse.current.x * Math.PI * 1.1
+      const targetX = mouse.current.y * 0.25
+      root.current.rotation.y = THREE.MathUtils.lerp(root.current.rotation.y, targetY, 0.08)
+      root.current.rotation.x = THREE.MathUtils.lerp(root.current.rotation.x, targetX, 0.08)
       root.current.position.y = Math.sin(t * 1.1) * 0.04
     }
   })
@@ -178,6 +194,18 @@ export default function DeveloperAvatar({ scale = 1 }) {
         <cylinderGeometry args={[0.7, 0.92, 1.35, 36]} />
         <meshStandardMaterial color={HOODIE} roughness={0.85} />
       </mesh>
+      {/* t-shirt peeking under the open hoodie */}
+      <mesh position={[0, 0.05, 0.55]} rotation={[0.2, 0, 0]} scale={[0.55, 0.7, 0.4]}>
+        <sphereGeometry args={[0.34, 22, 22]} />
+        <meshStandardMaterial color="#d2dae9" roughness={0.8} />
+      </mesh>
+      {/* open hoodie zip edges over the t-shirt */}
+      {[-0.16, 0.16].map((zx, i) => (
+        <mesh key={i} position={[zx, -0.15, 0.6]} rotation={[0.12, 0, zx * 0.6]}>
+          <boxGeometry args={[0.12, 0.9, 0.12]} />
+          <meshStandardMaterial color={HOODIE_DARK} roughness={0.85} />
+        </mesh>
+      ))}
       {/* hood (down) behind the neck */}
       <mesh position={[0, 0.32, -0.28]} rotation={[0.5, 0, 0]}>
         <torusGeometry args={[0.34, 0.16, 16, 28]} />
