@@ -1,95 +1,59 @@
 // =====================================================================
-//  Competition & event participation certificates, grouped by TYPE.
-//  Images live in  public/events/<file>.png
+//  Competitions & events — grouped by VENUE (where it happened) and by
+//  AWARD (winner/achievement vs participation).
 //
-//  Each event carries a `certs` array. When the SAME event was certified
-//  twice (e.g. an Unstop platform cert AND a separate organiser cert),
-//  list both certs here — they render as ONE card that lets you flip
-//  between the two certificates. Single-cert events just have one entry.
+//  venue : 'residential' (other colleges) | 'college' (PSNA) | 'school'
+//  award : 'winner' (secured a prize / podium / finalist) | 'participation'
 //
-//  To add a new cert: drop the image in public/events and add an item
-//  with the right `type`. Register new types in `eventTypes` below.
+//  Multi-event fests are grouped into ONE card carrying several certs
+//  (they flip in the lightbox). Images live in public/events/<file>.png
 // =====================================================================
 
-// Registered event categories (order + colour + label).
-export const eventTypes = [
-  { id: 'hackathon', label: 'Hackathons', accent: '#8b5cf6' },
-  { id: 'coding', label: 'Coding & CTF', accent: '#22d3ee' },
-  { id: 'quiz', label: 'Quizzes & Puzzles', accent: '#f59e0b' },
-  { id: 'challenge', label: 'Innovation Challenges', accent: '#34d399' },
-  { id: 'paper', label: 'Paper Presentations', accent: '#f472b6' },
+export const venues = [
+  { id: 'residential', label: 'Residential', sub: 'Symposiums & fests at other colleges', accent: '#8b5cf6' },
+  { id: 'college', label: 'College', sub: 'PSNA College of Engineering & Technology', accent: '#22d3ee' },
+  { id: 'school', label: 'School', sub: 'Lakshmi School, Madurai', accent: '#34d399' },
 ]
 
 export const events = [
-  // ── Hackathons ──────────────────────────────────────────────
+  // ══════════════ RESIDENTIAL · WINS ══════════════
   {
-    type: 'hackathon',
-    title: 'MOSIP Decode Hackathon',
-    org: 'Shaastra 2026 · IIT Madras',
-    sub: 'Digital Governance Summit',
-    result: 'Participant',
-    certs: [{ image: '/events/mosip-decode.png', issuer: 'Unstop', date: 'Jan 2026' }],
-  },
-  {
-    type: 'hackathon',
-    title: 'Hackwise 2.0 — Selection Round',
+    venue: 'residential', award: 'winner', type: 'hackathon',
+    title: 'Hackwise 2.0',
     org: 'Sphere Hive · KVG College of Engineering',
-    sub: 'Team Green Sync Innovators',
-    result: 'Qualified',
+    sub: 'National AI Hackathon · Team Green Sync Innovators',
+    result: 'Winner · 1st',
     certs: [{ image: '/events/hackwise-prelims.png', issuer: 'Unstop', date: '2026' }],
   },
   {
-    type: 'hackathon',
-    title: 'HackXIndia',
-    org: 'IIMT University, Meerut',
-    sub: 'Team Green Sync Innovators',
-    result: 'Participant',
-    certs: [{ image: '/events/hackxindia.png', issuer: 'Unstop', date: '2026' }],
+    venue: 'residential', award: 'winner', type: 'paper',
+    title: 'KEC Symposium — CSEA & CCC',
+    org: 'Kongu Engineering College, Erode',
+    sub: 'Paper Presentation',
+    result: 'Winner',
+    certs: [
+      { image: '/events/kec-winner.png', issuer: 'Winner · Paper Presentation', date: 'Mar 2026' },
+      { image: '/events/kec-participation.png', issuer: 'Participation', date: 'Mar 2026' },
+    ],
   },
   {
-    type: 'hackathon',
-    title: 'Galgotias International Hackathon',
-    org: 'Galgotias College (GCET), Greater Noida',
-    sub: 'Team IBM_Innovatorz',
-    result: 'Participant',
-    certs: [{ image: '/events/galgotias.png', issuer: 'Unstop', date: '2026' }],
+    venue: 'residential', award: 'winner', type: 'quiz',
+    title: 'Electroverse 2K26 — Technical Quiz',
+    org: 'Sethu Institute of Technology · EESOR',
+    sub: 'National Level Symposium',
+    result: 'II Prize',
+    certs: [{ image: '/events/sethu-electroverse.png', issuer: 'Sethu IT', date: 'Feb 2026' }],
   },
   {
-    type: 'hackathon',
-    title: 'GCET Hackathon 2026',
-    org: 'G H Patel College of Engineering, Anand',
-    sub: '',
-    result: 'Participant',
-    certs: [{ image: '/events/gcet.png', issuer: 'Unstop', date: '2026' }],
+    venue: 'residential', award: 'winner', type: 'challenge',
+    title: 'HyperCube Visual Bash',
+    org: 'Shaastra 2025 · IIT Madras',
+    sub: 'Data-visualization challenge',
+    result: 'Finalist',
+    certs: [{ image: '/events/hypercube-bash.png', issuer: 'IIT Madras', date: 'Jan 2025' }],
   },
   {
-    type: 'hackathon',
-    title: "HackZ'24",
-    org: 'College of Engineering Guindy (CEG)',
-    sub: 'Team Code Falcons',
-    result: 'Participant',
-    certs: [{ image: '/events/hackz24.png', issuer: 'Unstop', date: '2024' }],
-  },
-  {
-    type: 'hackathon',
-    title: 'Smart India Hackathon 2024',
-    org: 'Govt. of India · SIH',
-    sub: 'Team Cyber Spartans',
-    result: 'Participant',
-    certs: [{ image: '/events/sih-2024.png', issuer: 'SIH', date: 'Aug 2024' }],
-  },
-  {
-    type: 'hackathon',
-    title: 'SIH 2025 — Intra-Department Hackathon',
-    org: 'PSNA CET · Dept. of CSE',
-    sub: 'Team Auracare',
-    result: 'Participant',
-    certs: [{ image: '/events/sih-2025-intra.png', issuer: 'PSNA CET', date: 'Sep 2025' }],
-  },
-  {
-    // SAME event — Prelim (Budge Budge Institute) + Grand Finale (Tunisia) certificates,
-    // kept together on one card. Classified as a Hackathon.
-    type: 'hackathon',
+    venue: 'residential', award: 'winner', type: 'paper',
     title: 'IEEE YESIST12 2024',
     org: 'IEEE · Tunis Science City, Tunisia',
     sub: 'Project: Unveiling Mobile Thefting',
@@ -100,9 +64,97 @@ export const events = [
     ],
   },
 
-  // ── Coding & CTF ────────────────────────────────────────────
+  // ══════════════ RESIDENTIAL · PARTICIPATION ══════════════
   {
-    type: 'coding',
+    venue: 'residential', award: 'participation', type: 'hackathon',
+    title: 'Rathinam Grand Fest — Hackathon',
+    org: 'Rathinam Group of Institutions, Coimbatore',
+    sub: "India's Mega Techno-Cultural Fest (RGF)",
+    result: '5th place',
+    certs: [{ image: '/events/rathinam-rgf.png', issuer: 'Rathinam', date: 'Mar 2026' }],
+  },
+  {
+    venue: 'residential', award: 'participation', type: 'challenge',
+    title: "TECHUTSAV'26 — Paradigm",
+    org: 'Thiagarajar College of Engineering, Madurai',
+    sub: 'Workshop & Events',
+    result: 'Participant',
+    certs: [{ image: '/events/thiagarajar-techutsav.png', issuer: 'TCE', date: 'Feb 2026' }],
+  },
+  {
+    venue: 'residential', award: 'participation', type: 'challenge',
+    title: 'Science Tech Fest 2025 — TechSynergy',
+    org: 'Dhanalakshmi Srinivasan University, Tiruchirappalli',
+    sub: 'Prompt Verse · Inno Papers · Mind Hack · ADZAP · Treasure Hunt · Startup Pitching · Crackathon',
+    result: '7 events',
+    certs: [
+      { image: '/events/dsu-1.png', issuer: 'Event 1', date: 'Oct 2025' },
+      { image: '/events/dsu-2.png', issuer: 'Event 2', date: 'Oct 2025' },
+      { image: '/events/dsu-3.png', issuer: 'Event 3', date: 'Oct 2025' },
+      { image: '/events/dsu-4.png', issuer: 'Event 4', date: 'Oct 2025' },
+      { image: '/events/dsu-5.png', issuer: 'Event 5', date: 'Oct 2025' },
+      { image: '/events/dsu-6.png', issuer: 'Event 6', date: 'Oct 2025' },
+      { image: '/events/dsu-7.png', issuer: 'Event 7', date: 'Oct 2025' },
+    ],
+  },
+  {
+    venue: 'residential', award: 'participation', type: 'hackathon',
+    title: "HackXelerate '25",
+    org: 'KPR Institute of Engineering & Technology, Coimbatore',
+    sub: '24-hour National-Level Hackathon',
+    result: 'Participant',
+    certs: [{ image: '/events/kpr-hackxelerate.png', issuer: 'KPR IET', date: 'Apr 2025' }],
+  },
+  {
+    venue: 'residential', award: 'participation', type: 'coding',
+    title: 'Erupta 2025',
+    org: 'Sethu Institute of Technology · SITWARE',
+    sub: 'Code Quest · Paper Reel · Screen Test',
+    result: 'Participant',
+    certs: [{ image: '/events/sethu-erupta.png', issuer: 'Sethu IT', date: 'Feb 2025' }],
+  },
+  {
+    venue: 'residential', award: 'participation', type: 'hackathon',
+    title: 'MOSIP Decode Hackathon',
+    org: 'Shaastra 2026 · IIT Madras',
+    sub: 'Digital Governance Summit',
+    result: 'Participant',
+    certs: [{ image: '/events/mosip-decode.png', issuer: 'Unstop', date: 'Jan 2026' }],
+  },
+  {
+    venue: 'residential', award: 'participation', type: 'hackathon',
+    title: 'HackXIndia',
+    org: 'IIMT University, Meerut',
+    sub: 'Team Green Sync Innovators',
+    result: 'Participant',
+    certs: [{ image: '/events/hackxindia.png', issuer: 'Unstop', date: '2026' }],
+  },
+  {
+    venue: 'residential', award: 'participation', type: 'hackathon',
+    title: 'Galgotias International Hackathon',
+    org: 'Galgotias College (GCET), Greater Noida',
+    sub: 'Team IBM_Innovatorz',
+    result: 'Participant',
+    certs: [{ image: '/events/galgotias.png', issuer: 'Unstop', date: '2026' }],
+  },
+  {
+    venue: 'residential', award: 'participation', type: 'hackathon',
+    title: 'GCET Hackathon 2026',
+    org: 'G H Patel College of Engineering, Anand',
+    sub: '',
+    result: 'Participant',
+    certs: [{ image: '/events/gcet.png', issuer: 'Unstop', date: '2026' }],
+  },
+  {
+    venue: 'residential', award: 'participation', type: 'hackathon',
+    title: "HackZ'24",
+    org: 'College of Engineering Guindy (CEG)',
+    sub: 'Team Code Falcons',
+    result: 'Participant',
+    certs: [{ image: '/events/hackz24.png', issuer: 'Unstop', date: '2024' }],
+  },
+  {
+    venue: 'residential', award: 'participation', type: 'coding',
     title: 'Capture the Flag (CTF)',
     org: 'Shaastra 2026 · IIT Madras',
     sub: 'Cybersecurity challenge',
@@ -110,8 +162,7 @@ export const events = [
     certs: [{ image: '/events/ctf.png', issuer: 'Unstop', date: 'Jan 2026' }],
   },
   {
-    // SAME event — Unstop + IIT Madras organiser certificates
-    type: 'coding',
+    venue: 'residential', award: 'participation', type: 'coding',
     title: 'Reverse Coding X',
     org: 'Shaastra · IIT Madras',
     sub: 'Reverse engineering contest',
@@ -122,7 +173,7 @@ export const events = [
     ],
   },
   {
-    type: 'coding',
+    venue: 'residential', award: 'participation', type: 'coding',
     title: 'CP Potpourri',
     org: 'Shaastra · IIT Madras',
     sub: 'Competitive programming',
@@ -133,7 +184,7 @@ export const events = [
     ],
   },
   {
-    type: 'coding',
+    venue: 'residential', award: 'participation', type: 'coding',
     title: 'E-Contest',
     org: 'Shaastra · IIT Madras',
     sub: 'Programming contest',
@@ -144,7 +195,7 @@ export const events = [
     ],
   },
   {
-    type: 'coding',
+    venue: 'residential', award: 'participation', type: 'coding',
     title: 'Programming Contest',
     org: 'Shaastra · IIT Madras',
     sub: 'Competitive programming',
@@ -152,7 +203,7 @@ export const events = [
     certs: [{ image: '/events/programming-contest.png', issuer: 'IIT Madras', date: '2024' }],
   },
   {
-    type: 'coding',
+    venue: 'residential', award: 'participation', type: 'coding',
     title: 'Frontend Battle — Vibe Coding',
     org: 'IIT Bhubaneswar',
     sub: '',
@@ -160,7 +211,7 @@ export const events = [
     certs: [{ image: '/events/frontend-battle.png', issuer: 'Unstop', date: '2026' }],
   },
   {
-    type: 'coding',
+    venue: 'residential', award: 'participation', type: 'coding',
     title: 'Flipkart GRiD 6.0',
     org: 'Flipkart · Software Development Track',
     sub: 'Level 1 — E-Commerce & Tech Quiz',
@@ -168,17 +219,7 @@ export const events = [
     certs: [{ image: '/events/flipkart-grid.png', issuer: 'Flipkart', date: '2024' }],
   },
   {
-    type: 'coding',
-    title: 'Coding & Debugging',
-    org: 'NDLI Club · PSNA CET',
-    sub: 'Coding and debugging challenge',
-    result: 'Participant',
-    certs: [{ image: '/events/coding-debugging.png', issuer: 'NDLI · IIT Kharagpur', date: 'May 2024' }],
-  },
-
-  // ── Quizzes & Puzzles ───────────────────────────────────────
-  {
-    type: 'quiz',
+    venue: 'residential', award: 'participation', type: 'quiz',
     title: 'InQuizzitive — Boardroom Battle',
     org: 'IIM Kozhikode · Backwaters 2026',
     sub: 'Management quiz',
@@ -186,7 +227,7 @@ export const events = [
     certs: [{ image: '/events/inquizzitative.png', issuer: 'Unstop', date: '2026' }],
   },
   {
-    type: 'quiz',
+    venue: 'residential', award: 'participation', type: 'quiz',
     title: 'Quantified Dilemma',
     org: 'Shaastra 2026 · IIT Madras',
     sub: 'Quant & analytics',
@@ -194,7 +235,7 @@ export const events = [
     certs: [{ image: '/events/quantified-dilemma.png', issuer: 'Unstop', date: 'Jan 2026' }],
   },
   {
-    type: 'quiz',
+    venue: 'residential', award: 'participation', type: 'quiz',
     title: 'Quantathon',
     org: 'Shaastra 2024 · IIT Madras',
     sub: 'Quant challenge',
@@ -202,7 +243,7 @@ export const events = [
     certs: [{ image: '/events/quantathon-2024.png', issuer: 'IIT Madras', date: 'Dec 2023' }],
   },
   {
-    type: 'quiz',
+    venue: 'residential', award: 'participation', type: 'quiz',
     title: 'Weird Chess',
     org: 'Shaastra · IIT Madras',
     sub: 'Strategy puzzle',
@@ -213,7 +254,7 @@ export const events = [
     ],
   },
   {
-    type: 'quiz',
+    venue: 'residential', award: 'participation', type: 'quiz',
     title: 'Quizfinity',
     org: 'Knowledge Institute of Technology (KIoT)',
     sub: '',
@@ -221,25 +262,15 @@ export const events = [
     certs: [{ image: '/events/quizfinity.png', issuer: 'KIoT', date: '' }],
   },
   {
-    type: 'quiz',
-    title: 'GenAI Quiz Challenge 2026',
-    org: 'NDLI Club · PSNA CET',
-    sub: 'Generative AI quiz',
-    result: 'Participant',
-    certs: [{ image: '/events/ndli-genai-quiz.png', issuer: 'NDLI', date: 'May 2026' }],
-  },
-  {
-    type: 'quiz',
+    venue: 'residential', award: 'participation', type: 'quiz',
     title: 'Electoral Quest — E-Quiz',
     org: 'Christ College of Science & Management',
     sub: 'Dept. of Management with IQAC · Score 70/150',
     result: 'Participant',
     certs: [{ image: '/events/electoral-quest.png', issuer: 'Christ College', date: 'Apr 2024' }],
   },
-
-  // ── Innovation Challenges ───────────────────────────────────
   {
-    type: 'challenge',
+    venue: 'residential', award: 'participation', type: 'challenge',
     title: 'Tata Imagination Challenge 2024',
     org: 'Tata Group',
     sub: 'Student Track',
@@ -247,7 +278,7 @@ export const events = [
     certs: [{ image: '/events/tata-imagination.png', issuer: 'Tata', date: '2024' }],
   },
   {
-    type: 'challenge',
+    venue: 'residential', award: 'participation', type: 'challenge',
     title: 'HP Power Lab 2.0 — Round 1',
     org: 'Hindustan Petroleum Corporation Ltd',
     sub: 'Online assessment',
@@ -255,7 +286,7 @@ export const events = [
     certs: [{ image: '/events/hp-powerlab.png', issuer: 'HPCL', date: '' }],
   },
   {
-    type: 'challenge',
+    venue: 'residential', award: 'participation', type: 'challenge',
     title: 'Next-Gen Engineering Challenge',
     org: 'ISB&M, Bangalore',
     sub: '',
@@ -263,28 +294,117 @@ export const events = [
     certs: [{ image: '/events/nextgen.png', issuer: 'ISB&M', date: '' }],
   },
   {
-    type: 'challenge',
-    title: 'HyperCube Visual Bash',
-    org: 'Shaastra 2025 · IIT Madras',
-    sub: 'Data-visualization challenge',
-    result: 'Finalist',
-    certs: [{ image: '/events/hypercube-bash.png', issuer: 'IIT Madras', date: 'Jan 2025' }],
-  },
-
-  // ── Paper / project presentations ───────────────────────────
-  {
-    type: 'paper',
+    venue: 'residential', award: 'participation', type: 'paper',
     title: "Paper Presentation — INEXTRON'23",
     org: 'EGS Pillay Engineering College',
     sub: 'Intl. Technical Symposium',
     result: 'Participant',
     certs: [{ image: '/events/inextron-paper.png', issuer: 'EGS Pillay', date: 'Oct 2023' }],
   },
+
+  // ══════════════ COLLEGE (PSNA) · PARTICIPATION ══════════════
+  {
+    venue: 'college', award: 'participation', type: 'hackathon',
+    title: 'Smart India Hackathon 2024',
+    org: 'PSNA CET · SIH (Govt. of India)',
+    sub: 'Team Cyber Spartans',
+    result: 'Participant',
+    certs: [{ image: '/events/sih-2024.png', issuer: 'SIH', date: 'Aug 2024' }],
+  },
+  {
+    venue: 'college', award: 'participation', type: 'hackathon',
+    title: 'SIH 2025 — Intra-Department Hackathon',
+    org: 'PSNA CET · Dept. of CSE',
+    sub: 'Team Auracare',
+    result: 'Participant',
+    certs: [{ image: '/events/sih-2025-intra.png', issuer: 'PSNA CET', date: 'Sep 2025' }],
+  },
+  {
+    venue: 'college', award: 'participation', type: 'coding',
+    title: 'Coding & Debugging',
+    org: 'NDLI Club · PSNA CET',
+    sub: 'Coding and debugging challenge',
+    result: 'Participant',
+    certs: [{ image: '/events/coding-debugging.png', issuer: 'NDLI · IIT Kharagpur', date: 'May 2024' }],
+  },
+  {
+    venue: 'college', award: 'participation', type: 'quiz',
+    title: 'GenAI Quiz Challenge 2026',
+    org: 'NDLI Club · PSNA CET',
+    sub: 'Generative AI quiz',
+    result: 'Participant',
+    certs: [{ image: '/events/ndli-genai-quiz.png', issuer: 'NDLI', date: 'May 2026' }],
+  },
+  {
+    venue: 'college', award: 'participation', type: 'challenge',
+    title: 'Network Security Workshop',
+    org: 'KRIYAVAN × PSNA CET (WiCyS Chapter)',
+    sub: 'Approaches to Network Security for Aspiring Graduates',
+    result: 'Participant',
+    certs: [{ image: '/events/kriyavan-workshop.png', issuer: 'KRIYAVAN', date: 'Dec 2023' }],
+  },
+  {
+    venue: 'college', award: 'participation', type: 'challenge',
+    title: 'Student Induction Program (SIP)',
+    org: 'PSNA CET · AICTE (IQAC Initiative)',
+    sub: '2023–2024',
+    result: 'Participant',
+    certs: [{ image: '/events/psna-sip.png', issuer: 'PSNA CET', date: 'Sep 2023' }],
+  },
+
+  // ══════════════ SCHOOL · WINS ══════════════
+  {
+    venue: 'school', award: 'winner', type: 'challenge',
+    title: 'Certificate of Merit',
+    org: 'Lakshmi School, Madurai',
+    sub: 'School achievement',
+    result: 'Merit',
+    certs: [{ image: '/events/lakshmi-merit.png', issuer: 'Lakshmi School', date: '' }],
+  },
+  {
+    venue: 'school', award: 'winner', type: 'challenge',
+    title: 'Sports — Certificate of Merit',
+    org: 'EduSports · Lakshmi School, Madurai',
+    sub: 'Athletics',
+    result: 'Merit',
+    certs: [{ image: '/events/edusports-merit.png', issuer: 'EduSports', date: '' }],
+  },
+
+  // ══════════════ SCHOOL · PARTICIPATION ══════════════
+  {
+    venue: 'school', award: 'participation', type: 'challenge',
+    title: 'Football League',
+    org: 'Lakshmi School, Madurai · EduSports',
+    sub: 'Standard V',
+    result: 'Participant',
+    certs: [{ image: '/events/edusports-football.png', issuer: 'EduSports', date: 'Dec 2014' }],
+  },
+  {
+    venue: 'school', award: 'participation', type: 'quiz',
+    title: 'Scope Lark',
+    org: 'School competition',
+    sub: '',
+    result: 'Participant',
+    certs: [{ image: '/events/scope-lark.png', issuer: 'School', date: '' }],
+  },
+  {
+    venue: 'school', award: 'participation', type: 'challenge',
+    title: 'Valarnagar Ilaingnar Nalavaazhvu Sangam',
+    org: 'Madurai',
+    sub: 'Community youth competitions — Appreciation',
+    result: 'Appreciation',
+    certs: [
+      { image: '/events/valarnagar-1.png', issuer: 'Appreciation', date: '' },
+      { image: '/events/valarnagar-2.png', issuer: 'Appreciation', date: '' },
+      { image: '/events/valarnagar-3.png', issuer: 'Appreciation', date: '' },
+      { image: '/events/valarnagar-4.png', issuer: 'Appreciation', date: '' },
+      { image: '/events/valarnagar-5.png', issuer: 'Appreciation', date: '' },
+    ],
+  },
 ]
 
 // Helpers
 export const eventCount = events.length
 export const certTotal = events.reduce((n, e) => n + e.certs.length, 0)
-export const eventTypeCount = eventTypes.filter((t) =>
-  events.some((e) => e.type === t.id)
-).length
+export const winCount = events.filter((e) => e.award === 'winner').length
+export const venueCount = venues.filter((v) => events.some((e) => e.venue === v.id)).length

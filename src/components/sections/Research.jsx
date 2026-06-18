@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { BadgeCheck, GraduationCap, Code2, ArrowUpRight, X, Award } from 'lucide-react'
+import { BadgeCheck, GraduationCap, Code2, ArrowUpRight, X, Award, School, Heart } from 'lucide-react'
 import SectionTitle from '../ui/SectionTitle'
 import { certGroups, certCount, issuerCount } from '../../data/certificates'
-import { education, profile } from '../../data/profile'
+import { education, profile, schooling, hobbies } from '../../data/profile'
 
 export default function Research() {
   const [filter, setFilter] = useState('All')
@@ -134,6 +134,37 @@ export default function Research() {
             </div>
           </div>
 
+          {/* Schooling */}
+          <div className="glass rounded-2xl p-6">
+            <h3 className="mb-3 flex items-center gap-2 font-display text-lg font-semibold text-white">
+              <School size={18} className="text-neon-cyan" /> Schooling
+            </h3>
+            <p className="font-display text-base font-semibold text-white">{schooling.name}</p>
+            <p className="mt-1 text-xs text-slate-400">{schooling.place}</p>
+            <div className="mt-4 space-y-2">
+              {schooling.records.map((r) => (
+                <div
+                  key={r.level}
+                  className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2"
+                >
+                  <div>
+                    <p className="text-sm font-medium text-white">
+                      {r.level}
+                      <span
+                        className="ml-2 rounded bg-white/10 px-1.5 py-0.5 font-mono text-[10px] text-neon-cyan"
+                        title={r.boardFull}
+                      >
+                        {r.board}
+                      </span>
+                    </p>
+                    <p className="font-mono text-[11px] text-slate-500">{r.score}</p>
+                  </div>
+                  <span className="gradient-text font-display text-lg font-bold">{r.percent}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="glass rounded-2xl p-6">
             <h3 className="mb-4 flex items-center gap-2 font-display text-lg font-semibold text-white">
               <Code2 size={18} className="text-neon-green" /> Coding profiles
@@ -157,6 +188,27 @@ export default function Research() {
                   </span>
                   <ArrowUpRight size={16} className="text-slate-500 transition group-hover:text-white" />
                 </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Hobbies */}
+          <div className="glass rounded-2xl p-6">
+            <h3 className="mb-4 flex items-center gap-2 font-display text-lg font-semibold text-white">
+              <Heart size={18} className="text-neon-pink" /> Hobbies & interests
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {hobbies.map((h) => (
+                <span
+                  key={h.name}
+                  className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-sm text-slate-200"
+                >
+                  <span
+                    className="h-2 w-2 rounded-full"
+                    style={{ background: h.color, boxShadow: `0 0 10px ${h.color}` }}
+                  />
+                  {h.name}
+                </span>
               ))}
             </div>
           </div>

@@ -4,7 +4,7 @@ import { Stars } from '@react-three/drei'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowDown, Volume2, VolumeX, Github, Linkedin, Mail, Sparkles } from 'lucide-react'
 import NeuralNet from '../three/NeuralBackground'
-import DeveloperAvatar from '../three/DeveloperAvatar'
+import GraduateAvatar from '../three/GraduateAvatar'
 import MagneticButton from '../ui/MagneticButton'
 import { profile } from '../../data/profile'
 
@@ -60,8 +60,8 @@ export default function Hero() {
             <Stars radius={60} depth={40} count={2600} factor={4} saturation={0} fade speed={1} />
             <NeuralNet />
             <pointLight position={[3, 3, 5]} intensity={0.6} color="#22d3ee" />
-            <group position={[3.8, 0.1, 3]} scale={1.0}>
-              <DeveloperAvatar scale={1} />
+            <group position={[3.8, 0.1, 3]} scale={0.95}>
+              <GraduateAvatar scale={1} />
             </group>
           </Suspense>
         </Canvas>

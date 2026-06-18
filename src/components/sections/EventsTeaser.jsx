@@ -1,18 +1,18 @@
 import { motion } from 'framer-motion'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, Trophy } from 'lucide-react'
 import SectionTitle from '../ui/SectionTitle'
-import { events, eventCount, certTotal, eventTypeCount } from '../../data/events'
+import { events, eventCount, certTotal, winCount } from '../../data/events'
 import { navigate } from '../../hooks/useHashRoute'
 
 /** Compact home preview that links out to the full /events page. */
 export default function EventsTeaser() {
-  const highlights = events.filter((e) => e.result && e.result !== 'Participant')
-  const picks = (highlights.length >= 3 ? highlights : [...highlights, ...events]).slice(0, 3)
+  const wins = events.filter((e) => e.award === 'winner')
+  const picks = (wins.length >= 3 ? wins : [...wins, ...events]).slice(0, 3)
 
   const stats = [
     { label: 'Events', value: eventCount },
+    { label: 'Wins & finals', value: winCount },
     { label: 'Certificates', value: certTotal },
-    { label: 'Arenas', value: eventTypeCount },
   ]
 
   return (
@@ -21,7 +21,7 @@ export default function EventsTeaser() {
         <SectionTitle
           eyebrow="04 · Arena"
           title="Where I compete"
-          subtitle="Hackathons, coding battles, quizzes and paper presentations. The full arena log has its own page."
+          subtitle="Hackathons, coding battles, quizzes and paper presentations — grouped into School, College and Residential on a page of their own."
         />
 
         <div className="mt-12 grid gap-5 sm:grid-cols-3">
@@ -41,9 +41,9 @@ export default function EventsTeaser() {
                   loading="lazy"
                   className="h-full w-full object-cover"
                 />
-                {e.result && e.result !== 'Participant' && (
-                  <span className="absolute right-2 top-2 rounded-full bg-amber-300/20 px-2 py-0.5 text-[10px] font-semibold text-amber-300">
-                    {e.result}
+                {e.award === 'winner' && (
+                  <span className="absolute left-2 top-2 inline-flex items-center gap-1 rounded-full bg-amber-300/20 px-2 py-0.5 text-[10px] font-semibold text-amber-300">
+                    <Trophy size={11} /> {e.result}
                   </span>
                 )}
               </div>

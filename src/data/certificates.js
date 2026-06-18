@@ -153,6 +153,15 @@ export const certGroups = [
       { title: 'Cybersecurity Careers Unlocked', image: '/certs/cybersecurity-workshop.png', date: '13x Learning · Feb 2025' },
     ],
   },
+  {
+    issuer: 'Training Courses',
+    accent: '#38bdf8',
+    items: [
+      { title: 'MERN Stack Development', image: '/certs/innovel-mern.png', date: 'Innovel · 2024–25' },
+      { title: 'Essentials of C++', image: '/certs/livewire-cpp.png', date: 'LiveWire (NSDC) · 2022' },
+      { title: 'Essentials of C', image: '/certs/livewire-c.png', date: 'LiveWire (NSDC) · 2022' },
+    ],
+  },
 ]
 
 // Flattened helpers

@@ -455,3 +455,22 @@ export const education = {
   cgpa: '8.32 / 10',
   coursework: ['DSA', 'OOP', 'DBMS', 'AI / ML', 'Operating Systems', 'System Design'],
 }
+
+// School education (before college)
+export const schooling = {
+  name: 'Lakshmi School',
+  place: 'Veerapanchan, Karuppayurani, Madurai',
+  records: [
+    { level: 'Class XII', board: 'ISC', boardFull: 'Indian School Certificate', score: '446 / 500', percent: '89.20%' },
+    { level: 'Class X', board: 'ICSE', boardFull: 'Indian Certificate of Secondary Education', score: '554 / 600', percent: '92.33%' },
+  ],
+}
+
+// Hobbies & interests (edit freely)
+export const hobbies = [
+  { name: 'Football', color: '#34d399' },
+  { name: 'Competitive Programming', color: '#22d3ee' },
+  { name: 'Chess & Puzzles', color: '#8b5cf6' },
+  { name: 'Building Side-Projects', color: '#f59e0b' },
+  { name: 'Tech Blogging', color: '#ec4899' },
+]
