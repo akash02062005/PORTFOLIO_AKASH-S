@@ -3,6 +3,7 @@ import About from '../components/sections/About'
 import Projects from '../components/sections/Projects'
 import Hackathons from '../components/sections/Hackathons'
 import EventsTeaser from '../components/sections/EventsTeaser'
+import BeyondCode from '../components/sections/BeyondCode'
 import Skills from '../components/sections/Skills'
 import Talks from '../components/sections/Talks'
 import CredentialsTeaser from '../components/sections/CredentialsTeaser'
@@ -17,6 +18,7 @@ export default function Home() {
       <Projects />
       <Hackathons />
       <EventsTeaser />
+      <BeyondCode />
       <Skills />
       <Talks />
       <CredentialsTeaser />

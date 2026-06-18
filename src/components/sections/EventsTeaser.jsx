@@ -7,7 +7,12 @@ import { navigate } from '../../hooks/useHashRoute'
 /** Compact home preview that links out to the full /events page. */
 export default function EventsTeaser() {
   const wins = events.filter((e) => e.award === 'winner')
-  const picks = (wins.length >= 3 ? wins : [...wins, ...events]).slice(0, 3)
+  // headline wins: 4 college · 2 school · 1 residential
+  const picks = [
+    ...wins.filter((e) => e.venue === 'college').slice(0, 4),
+    ...wins.filter((e) => e.venue === 'school').slice(0, 2),
+    ...wins.filter((e) => e.venue === 'residential').slice(0, 1),
+  ]
 
   const stats = [
     { label: 'Events', value: eventCount },
@@ -20,11 +25,11 @@ export default function EventsTeaser() {
       <div className="section-pad">
         <SectionTitle
           eyebrow="04 · Arena"
-          title="Where I compete"
-          subtitle="Hackathons, coding battles, quizzes and paper presentations — grouped into School, College and Residential on a page of their own."
+          title="Wins & where I compete"
+          subtitle="Headline winning certificates below — the full arena, grouped into College, School and Residential, lives on its own page."
         />
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-3">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {picks.map((e, i) => (
             <motion.div
               key={`${e.title}-${i}`}
