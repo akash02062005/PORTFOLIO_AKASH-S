@@ -1,73 +1,47 @@
-import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-
-const lines = [
-  'Initializing neural core…',
-  'Loading project galaxies…',
-  'Calibrating synapses…',
-  'Booting AI guide “Aria”…',
-  'Welcome to the Neural Universe.',
-]
+import { useState, useEffect, useRef } from 'react'
 
 export default function Loader({ onDone }) {
-  const [step, setStep] = useState(0)
-  const [done, setDone] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const [hidden, setHidden] = useState(false)
+  const timerRef = useRef(null)
 
   useEffect(() => {
-    if (step >= lines.length - 1) {
-      const t = setTimeout(() => {
-        setDone(true)
-        onDone?.()
-      }, 700)
-      return () => clearTimeout(t)
-    }
-    const t = setTimeout(() => setStep((s) => s + 1), 520)
-    return () => clearTimeout(t)
-  }, [step, onDone])
+    timerRef.current = setInterval(() => {
+      setProgress((p) => {
+        if (p >= 100) {
+          clearInterval(timerRef.current)
+          setTimeout(() => {
+            setHidden(true)
+            onDone?.()
+          }, 400)
+          return 100
+        }
+        return p + Math.random() * 15 + 5
+      })
+    }, 120)
+    return () => clearInterval(timerRef.current)
+  }, [onDone])
 
-  const progress = Math.round(((step + 1) / lines.length) * 100)
+  if (hidden) return null
 
   return (
-    <AnimatePresence>
-      {!done && (
-        <motion.div
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.6 }}
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-ink"
-        >
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className="relative mb-8 h-24 w-24"
-          >
-            <div className="absolute inset-0 animate-spin rounded-full border-2 border-transparent border-t-neon-cyan border-r-neon-violet" />
-            <div className="absolute inset-2 animate-pulse rounded-full bg-gradient-to-br from-neon-cyan/30 to-neon-violet/30 blur-md" />
-            <div className="absolute inset-0 flex items-center justify-center font-mono text-sm text-neon-cyan">
-              {progress}%
-            </div>
-          </motion.div>
-
-          <div className="h-6 font-mono text-sm text-slate-300">
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={step}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-              >
-                {lines[step]}
-              </motion.span>
-            </AnimatePresence>
-          </div>
-
-          <div className="mt-6 h-1 w-56 overflow-hidden rounded-full bg-white/10">
-            <motion.div
-              className="h-full rounded-full bg-gradient-to-r from-neon-cyan to-neon-violet"
-              animate={{ width: `${progress}%` }}
-            />
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <div
+      className={`fixed inset-0 z-[999] flex flex-col items-center justify-center bg-navy-900 transition-opacity duration-500 ${
+        progress >= 100 ? 'opacity-0' : 'opacity-100'
+      }`}
+    >
+      <p className="font-mono text-accent text-sm mb-6 tracking-widest">
+        {'<AS />'}
+      </p>
+      <div className="w-48 h-[2px] bg-navy-700 rounded overflow-hidden">
+        <div
+          className="h-full bg-accent rounded transition-all duration-200 ease-out"
+          style={{ width: `${Math.min(progress, 100)}%` }}
+        />
+      </div>
+      <p className="font-mono text-slate-dark text-[11px] mt-4">
+        {Math.min(Math.round(progress), 100)}%
+      </p>
+    </div>
   )
 }

@@ -3,167 +3,58 @@
 @tailwind utilities;
 
 :root {
+  --paper: 255 255 255;
+  --surface: 250 250 250;
+  --line: 228 228 228;
+  --ink: 12 12 12;
+  --muted: 85 85 85;
+  --faint: 145 145 145;
+  color-scheme: light;
+}
+
+.dark {
+  --paper: 10 10 10;
+  --surface: 22 22 22;
+  --line: 39 39 39;
+  --ink: 245 245 245;
+  --muted: 168 168 168;
+  --faint: 115 115 115;
   color-scheme: dark;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  background-color: #05060f;
-  color: #e5e7eb;
-  font-family: 'Inter', system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: #05060f;
-}
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(#22d3ee, #8b5cf6);
-  border-radius: 99px;
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-paper font-body text-ink antialiased transition-colors duration-300; }
+  ::selection { @apply bg-ink text-paper; }
+  [id] { scroll-margin-top: 5rem; }
 }
 
 @layer components {
-  .gradient-text {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(110deg, #22d3ee, #8b5cf6, #ec4899, #22d3ee);
-    background-size: 200% auto;
-    animation: shimmer 6s linear infinite;
-  }
-
-  .glass {
-    background: rgba(20, 26, 54, 0.45);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(148, 163, 184, 0.16);
-  }
-
-  .glass-hover {
-    transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-  .glass-hover:hover {
-    border-color: rgba(34, 211, 238, 0.45);
-    box-shadow: 0 0 40px -12px rgba(34, 211, 238, 0.45);
-    transform: translateY(-4px);
-  }
-
-  .chip {
-    @apply inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-200;
-  }
-
-  .section-pad {
-    @apply mx-auto w-full max-w-6xl px-5 py-28 md:px-8 md:py-36;
-  }
+  .section { @apply mx-auto w-full max-w-6xl px-5 py-12 sm:px-8 md:py-16; }
+  .card { @apply rounded-2xl border border-line bg-surface transition-all duration-300; }
+  .card-hover { @apply hover:-translate-y-1 hover:border-faint; }
+  .chip { @apply inline-flex items-center rounded-full border border-line bg-paper px-3 py-1 text-xs font-medium text-muted; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all; }
+  .btn-solid { @apply bg-ink text-paper hover:opacity-80; }
+  .btn-ghost { @apply border border-line text-ink hover:bg-surface; }
 }
 
-/* Grid background overlay */
-.grid-overlay {
-  background-image:
-    linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+.role-swap { animation: roleIn 0.45s ease; }
+@keyframes roleIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
 }
 
-/* Aurora glow blobs */
-.aurora {
-  position: absolute;
-  filter: blur(80px);
-  opacity: 0.4;
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-/* Hide default cursor when custom cursor active (desktop only) */
-@media (hover: hover) and (pointer: fine) {
-  .custom-cursor-active,
-  .custom-cursor-active * {
-    cursor: none;
-  }
-}
-
-/* ── Holographic photo card effects ───────────────────────────── */
-.holo-scan {
-  background-image: repeating-linear-gradient(
-    to bottom,
-    rgba(34, 211, 238, 0.10) 0px,
-    rgba(34, 211, 238, 0.10) 1px,
-    transparent 1px,
-    transparent 4px
-  );
-  mix-blend-mode: screen;
-  animation: scanmove 6s linear infinite;
-}
-@keyframes scanmove {
-  from { background-position-y: 0; }
-  to { background-position-y: 220px; }
-}
-
-.holo-corner {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  pointer-events: none;
-  z-index: 10;
-}
-.holo-corner-tl { top: 8px; left: 8px; border-top: 2px solid rgba(34, 211, 238, 0.85); border-left: 2px solid rgba(34, 211, 238, 0.85); }
-.holo-corner-tr { top: 8px; right: 8px; border-top: 2px solid rgba(34, 211, 238, 0.85); border-right: 2px solid rgba(34, 211, 238, 0.85); }
-.holo-corner-bl { bottom: 8px; left: 8px; border-bottom: 2px solid rgba(34, 211, 238, 0.85); border-left: 2px solid rgba(34, 211, 238, 0.85); }
-.holo-corner-br { bottom: 8px; right: 8px; border-bottom: 2px solid rgba(34, 211, 238, 0.85); border-right: 2px solid rgba(34, 211, 238, 0.85); }
-
-/* ── Rotating conic gradient border ───────────────────────────── */
-@property --ang {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
-.animated-border { position: relative; isolation: isolate; }
-.animated-border::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  padding: 2px;
-  background: conic-gradient(from var(--ang), #22d3ee, #8b5cf6, #ec4899, #22d3ee);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  animation: borderspin 6s linear infinite;
-  opacity: 0.85;
-  pointer-events: none;
-  z-index: -1;
-}
-@keyframes borderspin {
-  to { --ang: 360deg; }
-}
-
-/* ── Infinite marquee ribbon ──────────────────────────────────── */
-.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-.marquee-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
-.marquee:hover .marquee-track { animation-play-state: paused; }
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-  }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .role-swap { animation: none; }
 }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: rgb(var(--paper)); }
+::-webkit-scrollbar-thumb { background: rgb(var(--line)); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: rgb(var(--faint)); }

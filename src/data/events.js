@@ -31,9 +31,9 @@ export const events = [
     result: 'Winner · 1st',
     photos: ['/events/hackwise-win-1.jpg', '/events/hackwise-win-2.jpg'],
     certs: [
-      { image: '/events/hackwise-winner.png', issuer: 'Winner · 1st Place', date: 'Apr 2025' },
-      { image: '/events/hackwise-participation.png', issuer: 'Participation', date: 'Apr 2025' },
-      { image: '/events/hackwise-prelims.png', issuer: 'Unstop · Selection', date: 'Apr 2025' },
+      { image: '/events/hackwise-winner.png', issuer: 'Winner · 1st Place', date: 'Apr 2026' },
+      { image: '/events/hackwise-participation.png', issuer: 'Participation', date: 'Apr 2026' },
+      { image: '/events/hackwise-prelims.png', issuer: 'Unstop · Selection', date: 'Apr 2026' },
     ],
   },
   {

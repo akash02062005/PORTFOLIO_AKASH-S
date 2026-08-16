@@ -1,114 +1,84 @@
-import { useEffect, useState } from 'react'
-import { motion, useScroll, useSpring } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
-import { useHashRoute, navigate } from '../hooks/useHashRoute'
+import { useState } from 'react'
+import { Menu, X, Sun, Moon } from 'lucide-react'
 
 const links = [
-  { id: 'about', label: 'About' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'hackathons', label: 'Hackathons' },
-  { id: 'events', label: 'Events' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'talks', label: 'Research' },
-  { id: 'research', label: 'Credentials' },
-  { id: 'resume', label: 'Résumé' },
-  { id: 'contact', label: 'Contact' },
+  { label: 'About', href: '#about' },
+  { label: 'Journey', href: '#journey' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Talks', href: '#talks' },
+  { label: 'Blog', href: '#/blog' },
+  { label: 'Contact', href: '#contact' },
 ]
 
-export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-  const [open, setOpen] = useState(false)
-  const route = useHashRoute()
-  const { scrollYProgress } = useScroll()
-  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 })
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  const go = (id) => {
-    setOpen(false)
-    if (route !== '/') {
-      // navigate home first, then scroll once the section has mounted
-      navigate('/')
-      setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 90)
-    } else {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
+function ThemeButton({ theme, onToggleTheme }) {
   return (
-    <>
-      <motion.div
-        className="fixed left-0 top-0 z-50 h-[2px] origin-left bg-gradient-to-r from-neon-cyan via-neon-violet to-neon-pink"
-        style={{ scaleX: progress, width: '100%' }}
-      />
-      <header
-        className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
-          scrolled ? 'py-2' : 'py-4'
-        }`}
-      >
-        <nav
-          className={`mx-auto flex max-w-6xl items-center justify-between rounded-2xl px-4 py-3 transition-all md:px-6 ${
-            scrolled ? 'glass mx-3 md:mx-auto' : 'bg-transparent'
-          }`}
+    <button
+      onClick={onToggleTheme}
+      aria-label="Toggle theme"
+      className="rounded-full border border-line p-2 text-muted transition-colors hover:text-ink"
+    >
+      {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+    </button>
+  )
+}
+
+export default function Navbar({ theme, onToggleTheme }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-paper/85 backdrop-blur">
+      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
+        <a
+          href="#/"
+          onClick={() => setOpen(false)}
+          className="font-display text-lg font-bold tracking-tight"
         >
-          <button onClick={() => go('hero')} className="group flex items-center gap-2">
-            <span className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-neon-cyan to-neon-violet font-display text-sm font-bold text-ink">
-              AS
-            </span>
-            <span className="font-display text-sm font-semibold tracking-wide text-white">
-              Akash<span className="text-neon-cyan">.</span>
-            </span>
-          </button>
+          akash<span className="text-faint">.s</span>
+        </a>
 
-          <div className="hidden items-center gap-1 md:flex">
-            {links.map((l) => (
-              <button
-                key={l.id}
-                onClick={() => go(l.id)}
-                className="rounded-lg px-3 py-2 text-sm text-slate-300 transition hover:bg-white/5 hover:text-white"
-              >
-                {l.label}
-              </button>
-            ))}
-            <button
-              onClick={() => go('contact')}
-              className="ml-2 rounded-lg bg-gradient-to-r from-neon-cyan to-neon-violet px-4 py-2 text-sm font-semibold text-ink transition hover:shadow-glow"
-            >
-              Let’s talk
-            </button>
-          </div>
+        {/* Desktop */}
+        <div className="hidden items-center gap-6 lg:flex">
+          {links.map((l) => (
+            <a key={l.label} href={l.href} className="text-sm text-muted transition-colors hover:text-ink">
+              {l.label}
+            </a>
+          ))}
+          <a href="#resume" className="btn btn-ghost !px-4 !py-1.5">
+            Resume
+          </a>
+          <ThemeButton theme={theme} onToggleTheme={onToggleTheme} />
+        </div>
 
+        {/* Mobile */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeButton theme={theme} onToggleTheme={onToggleTheme} />
           <button
-            onClick={() => setOpen((o) => !o)}
-            className="rounded-lg p-2 text-white md:hidden"
-            aria-label="Menu"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle menu"
+            className="rounded-full border border-line p-2 text-muted transition-colors hover:text-ink"
           >
-            {open ? <X size={20} /> : <Menu size={20} />}
+            {open ? <X size={16} /> : <Menu size={16} />}
           </button>
-        </nav>
+        </div>
+      </nav>
 
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="glass mx-3 mt-2 flex flex-col gap-1 rounded-2xl p-3 md:hidden"
-          >
-            {links.map((l) => (
-              <button
-                key={l.id}
-                onClick={() => go(l.id)}
-                className="rounded-lg px-3 py-3 text-left text-sm text-slate-200 hover:bg-white/5"
+      {open && (
+        <div className="border-b border-line bg-paper lg:hidden">
+          <div className="mx-auto flex max-w-6xl flex-col px-5 py-3 sm:px-8">
+            {[...links, { label: 'Resume', href: '#resume' }].map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="border-b border-line py-3 text-sm text-muted transition-colors last:border-0 hover:text-ink"
               >
                 {l.label}
-              </button>
+              </a>
             ))}
-          </motion.div>
-        )}
-      </header>
-    </>
+          </div>
+        </div>
+      )}
+    </header>
   )
 }

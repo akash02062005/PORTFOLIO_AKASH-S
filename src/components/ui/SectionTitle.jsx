@@ -1,42 +1,23 @@
-import { motion } from 'framer-motion'
+import useReveal from '../../hooks/useReveal'
 
-export default function SectionTitle({ eyebrow, title, subtitle, align = 'left' }) {
-  const center = align === 'center'
+/** Standard page section wrapper with scroll-reveal. */
+export function Section({ id, className = '', children }) {
+  const ref = useReveal()
   return (
-    <div className={center ? 'mx-auto max-w-2xl text-center' : 'max-w-2xl'}>
-      {eyebrow && (
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          className={`mb-3 inline-flex items-center gap-2 ${center ? 'justify-center' : ''}`}
-        >
-          <span className="h-px w-8 bg-gradient-to-r from-neon-cyan to-transparent" />
-          <span className="font-mono text-xs uppercase tracking-[0.25em] text-neon-cyan">
-            {eyebrow}
-          </span>
-        </motion.div>
+    <section id={id} ref={ref} className={`section reveal ${className}`}>
+      {children}
+    </section>
+  )
+}
+
+export default function SectionTitle({ kicker, title, subtitle }) {
+  return (
+    <header className="mb-8 max-w-2xl md:mb-10">
+      {kicker && (
+        <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-faint">{kicker}</p>
       )}
-      <motion.h2
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.6 }}
-        className="font-display text-3xl font-bold leading-tight text-white md:text-5xl"
-      >
-        {title}
-      </motion.h2>
-      {subtitle && (
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className={`mt-4 text-base text-slate-400 md:text-lg ${center ? 'mx-auto' : ''}`}
-        >
-          {subtitle}
-        </motion.p>
-      )}
-    </div>
+      <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
+      {subtitle && <p className="mt-3 leading-relaxed text-muted">{subtitle}</p>}
+    </header>
   )
 }

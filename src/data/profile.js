@@ -99,6 +99,7 @@ export const about = {
 export const projects = [
   {
     id: 'drugdisco',
+    date: 'May 2026',
     name: 'DrugDisco AI',
     type: 'Drug Discovery SaaS',
     category: 'ai',
@@ -118,6 +119,7 @@ export const projects = [
   },
   {
     id: 'neurosense',
+    date: 'May 2026',
     name: 'NeuroSense AI',
     type: 'Multi-Modal Wellness',
     category: 'ai',
@@ -137,6 +139,8 @@ export const projects = [
   },
   {
     id: 'lancera',
+    featured: true,
+    date: 'Apr 2026',
     name: 'Lancera',
     type: 'AI Freelancer Marketplace · Hackwise 2.0 Winner',
     category: 'ai',
@@ -157,6 +161,8 @@ export const projects = [
   },
   {
     id: 'aifinance',
+    featured: true,
+    date: 'May 2026',
     name: 'AI Finance Management',
     type: 'Multi-LLM Fintech SaaS',
     category: 'ai',
@@ -176,6 +182,7 @@ export const projects = [
   },
   {
     id: 'radisynx',
+    date: 'Jun 2026',
     name: 'RadiSynx',
     type: 'Medical Image Synthesis',
     category: 'ai',
@@ -195,6 +202,7 @@ export const projects = [
   },
   {
     id: 'cyberthreat',
+    date: 'Nov 2025',
     name: 'Cyber Threat Analyzer',
     type: 'AI Threat-Detection Expert System',
     category: 'ai',
@@ -214,6 +222,8 @@ export const projects = [
   },
   {
     id: 'orderstream',
+    featured: true,
+    date: 'Apr 2026',
     name: 'OrderStream',
     type: 'Full-Stack Order Management System',
     category: 'web',
@@ -233,6 +243,7 @@ export const projects = [
   },
   {
     id: 'studenthub',
+    date: 'Apr 2026',
     name: 'Student Management Hub',
     type: 'Real-Time Academic Dashboard',
     category: 'web',
@@ -252,6 +263,7 @@ export const projects = [
   },
   {
     id: 'auracare',
+    date: 'Sep 2025',
     name: 'Aura Care',
     type: 'Mental-Wellness Platform',
     category: 'web',
@@ -271,6 +283,7 @@ export const projects = [
   },
   {
     id: 'animeportal',
+    date: 'Oct 2025',
     name: 'Anime Portal',
     type: 'MERN Anime Discovery App',
     category: 'web',
@@ -290,6 +303,8 @@ export const projects = [
   },
   {
     id: 'fitcare',
+    featured: true,
+    date: 'Jun 2025',
     name: 'FitCare',
     type: 'AI Fitness & Wellness Platform',
     category: 'web',
@@ -318,6 +333,24 @@ export const projectCategories = [
 
 export const experience = [
   {
+    role: 'Data Analytics Intern',
+    org: 'Internify',
+    date: 'Jul – Aug 2026 · Hybrid · Ernakulam, Kerala',
+    points: [
+      'Cleaned, transformed and analyzed datasets with Python (pandas, NumPy) — handling missing values, outliers and formatting for analysis-ready data',
+      'Performed exploratory data analysis and built Matplotlib/Seaborn visualizations, summarizing trends and insights into concise reports',
+    ],
+  },
+  {
+    role: 'AIML Intern',
+    org: 'Skillfied Mentor',
+    date: 'Jul – Aug 2026 · Remote',
+    points: [
+      'Built a breast-cancer prediction pipeline on diagnostic data — Logistic Regression, Random Forest and SVM compared, with a GridSearchCV-tuned SVM (RBF) reaching 97.4% test accuracy',
+      'Predicted elevated glucose on the Framingham heart-study dataset using class-balanced Logistic Regression, Decision Tree and Random Forest — evaluated with precision, recall, F1 and ROC-AUC plus feature-importance analysis',
+    ],
+  },
+  {
     role: 'Java Developer Intern',
     org: 'Alfido Tech',
     date: 'Jul 2025 · Remote',
@@ -326,16 +359,6 @@ export const experience = [
       'Modeled an OOP payment simulator using inheritance & polymorphism (Credit/Debit/UPI) and a BufferedReader CSV record parser with try-with-resources exception handling',
     ],
     cert: '/certs/alfido-java-intern.png',
-  },
-  {
-    role: 'Machine Learning Intern',
-    org: 'Digital Blinc',
-    date: 'Jun 2025 · Remote',
-    points: [
-      'Built an NLP sentiment-analysis model classifying customer feedback at 85% accuracy',
-      'Engineered tokenization / TF-IDF pipelines and evaluated with precision, recall & F1',
-    ],
-    cert: '/certs/digitalblinc-intern.png',
   },
   {
     role: 'Machine Learning Intern',
@@ -421,7 +444,7 @@ export const achievements = [
   {
     title: '1st Place — Hackwise 2.0',
     detail: 'National AI hackathon · KVG College of Engineering',
-    year: '2025',
+    year: '2026',
     icon: 'trophy',
   },
   {
@@ -480,4 +503,50 @@ export const languages = [
   { name: 'Tamil', level: 'Native', pct: 100, color: '#34d399' },
   { name: 'English', level: 'Fluent', pct: 90, color: '#22d3ee' },
   { name: 'Hindi', level: 'Intermediate', pct: 65, color: '#f59e0b', note: 'DBHPS — Prathmik · Madhyama · Rashtrabhasha' },
+]
+
+// =====================================================================
+//  Journey timeline — "Where it started". Edit freely.
+// =====================================================================
+export const journey = [
+  {
+    period: '2010 – 2023',
+    title: 'Where it started — Lakshmi School, Madurai',
+    text: 'First computer classes and first curiosity about how software works. Finished Class X (ICSE) with 92.33% and Class XII (ISC) with 89.20%.',
+  },
+  {
+    period: '2023',
+    title: 'Joined PSNA CET — B.E. Computer Science',
+    text: 'Started engineering at Dindigul and fell headfirst into DSA, programming contests and building things that ship.',
+  },
+  {
+    period: '2024',
+    title: 'First internships, first deployments',
+    text: 'Python and web-development internships at OctaNet Services — first production-style apps, plus NPTEL (IIT) certifications in C and Python.',
+  },
+  {
+    period: '2025',
+    title: 'The AI year',
+    text: 'Shipped my first production platforms — FitCare and Aura Care — and completed ML and developer internships at Jyesta, Cognifyz and Alfido Tech.',
+  },
+  {
+    period: '2026',
+    title: 'Research & recognition',
+    text: 'Led my team to 1st place at Hackwise 2.0 — ahead of 1,000+ teams. Shipped DrugDisco AI, NeuroSense, RadiSynx and five more products, presented the AI-Based Skill Gap Analyzer at two conferences (RASET — IEEE ISBN, and ICECSM international), finished Top 5 at Codethon, and crossed 40+ professional certifications.',
+  },
+  {
+    period: '2027',
+    title: 'The next chapter',
+    text: 'Graduating — open to AI/ML, full-stack and SDE roles where I can keep turning research-grade AI into real software.',
+  },
+]
+
+// Key milestones for the highlights grid
+export const milestones = [
+  { year: '2026', title: '1st Place — Hackwise 2.0', detail: 'National AI hackathon · beat 1,000+ teams', star: true },
+  { year: '2026', title: '2 conference papers presented', detail: 'RASET (IEEE ISBN) & ICECSM international', star: true },
+  { year: '2026', title: 'Top 5 — Codethon', detail: 'Rathnam College, Coimbatore' },
+  { year: '2024–25', title: '6 internships completed', detail: 'ML, Java, Python & web across 5 companies' },
+  { year: '2023–27', title: 'CGPA 8.32 / 10', detail: 'B.E. CSE · PSNA College of Engineering & Technology' },
+  { year: '2025–26', title: '9 production projects shipped', detail: 'LLM apps, deep learning & full-stack SaaS' },
 ]

@@ -1,83 +1,51 @@
-import { motion } from 'framer-motion'
-import { ArrowUpRight, Trophy } from 'lucide-react'
-import SectionTitle from '../ui/SectionTitle'
-import { events, eventCount, certTotal, winCount } from '../../data/events'
-import { navigate } from '../../hooks/useHashRoute'
+import { ArrowRight, Award } from 'lucide-react'
+import SectionTitle, { Section } from '../ui/SectionTitle'
+import { events } from '../../data/events'
 
-/** Compact home preview that links out to the full /events page. */
+const MONTHS = { Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12 }
+function sortKey(e) {
+  const d = (e.certs && e.certs[0] && e.certs[0].date) || ''
+  const year = (d.match(/\d{4}/) || ['2099'])[0]
+  const mon = (d.match(/[A-Z][a-z]{2}/) || [''])[0]
+  return Number(year) * 100 + (MONTHS[mon] || 0)
+}
+
+const college = events.filter((e) => e.venue === 'college')
+const wins = college
+  .filter((e) => e.award === 'winner')
+  .slice()
+  .sort((a, b) => sortKey(a) - sortKey(b))
+
 export default function EventsTeaser() {
-  const wins = events.filter((e) => e.award === 'winner')
-  // headline wins: 4 college · 2 school · 1 residential
-  const picks = [
-    ...wins.filter((e) => e.venue === 'college').slice(0, 4),
-    ...wins.filter((e) => e.venue === 'school').slice(0, 2),
-    ...wins.filter((e) => e.venue === 'residential').slice(0, 1),
-  ]
-
-  const stats = [
-    { label: 'Events', value: eventCount },
-    { label: 'Wins & finals', value: winCount },
-    { label: 'Certificates', value: certTotal },
-  ]
-
+  const featured = wins.slice(0, 4)
   return (
-    <section id="events" className="relative">
-      <div className="section-pad">
-        <SectionTitle
-          eyebrow="04 · Arena"
-          title="Wins & where I compete"
-          subtitle="Headline winning certificates below — the full arena, grouped into College, School and Residential, lives on its own page."
-        />
-
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {picks.map((e, i) => (
-            <motion.div
-              key={`${e.title}-${i}`}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ delay: i * 0.08 }}
-              className="glass glass-hover overflow-hidden rounded-2xl"
-            >
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-black/40">
-                <img
-                  src={e.certs[0].image}
-                  alt={e.title}
-                  loading="lazy"
-                  className="h-full w-full object-cover"
-                />
-                {e.award === 'winner' && (
-                  <span className="absolute left-2 top-2 inline-flex items-center gap-1 rounded-full bg-amber-300/20 px-2 py-0.5 text-[10px] font-semibold text-amber-300">
-                    <Trophy size={11} /> {e.result}
-                  </span>
-                )}
-              </div>
-              <div className="p-4">
-                <p className="text-sm font-medium text-white">{e.title}</p>
-                <p className="mt-1 truncate text-[11px] text-slate-400">{e.org}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="mt-10 flex flex-wrap items-center gap-6">
-          <div className="flex flex-wrap gap-6">
-            {stats.map((s) => (
-              <div key={s.label}>
-                <span className="gradient-text font-display text-2xl font-bold">{s.value}</span>{' '}
-                <span className="text-xs text-slate-400">{s.label}</span>
-              </div>
-            ))}
-          </div>
-          <button
-            onClick={() => navigate('/events')}
-            className="group ml-auto inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white transition hover:border-neon-cyan/50"
-          >
-            View all events
-            <ArrowUpRight size={16} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </button>
-        </div>
-      </div>
-    </section>
+    <Section id="competitions">
+      <SectionTitle
+        kicker="07 — Competitions"
+        title="Wins, in order"
+        subtitle={`${college.length} college & national-level events — ${wins.length} finishing as winner or finalist.`}
+      />
+      <ol className="relative ml-2 border-l border-line">
+        {featured.map((e) => (
+          <li key={e.title} className="relative mb-8 ml-5 last:mb-0 sm:ml-8">
+            <span className="absolute -left-[27px] top-1 h-2.5 w-2.5 rounded-full border-2 border-paper bg-ink sm:-left-[39px]" />
+            <p className="font-mono text-xs uppercase tracking-wider text-faint">
+              {(e.certs && e.certs[0] && e.certs[0].date) || ''}
+            </p>
+            <p className="mt-1 inline-flex items-center gap-2 font-display font-semibold">
+              <Award size={15} className="shrink-0 text-muted" /> {e.title}
+              <span className="chip !border-ink !bg-ink !text-paper">{e.result}</span>
+            </p>
+            <p className="mt-0.5 text-sm text-muted">{e.org}</p>
+            {e.points && e.points[1] && (
+              <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-muted">{e.points[1]}</p>
+            )}
+          </li>
+        ))}
+      </ol>
+      <a href="#/events" className="btn btn-ghost mt-8">
+        All {college.length} competitions <ArrowRight size={15} />
+      </a>
+    </Section>
   )
 }
