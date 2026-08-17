@@ -49,24 +49,24 @@ export default function Hero() {
         />
       </div>
 
-      <div className="lg:col-start-1 lg:row-start-1">
+      <div className="text-center lg:col-start-1 lg:row-start-1 lg:text-left">
         <p className="mb-3 font-mono text-sm text-muted">Hi, my name is</p>
         <h1 className="font-display text-4xl font-bold tracking-tight sm:text-6xl">Akash S.</h1>
         <h2 className="mt-2 font-display text-xl font-semibold text-muted sm:text-3xl">
           <RoleRotator />
         </h2>
-        <p className="mt-4 max-w-2xl leading-relaxed text-muted">{profile.tagline}</p>
-        <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-sm text-faint">
+        <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-muted lg:mx-0">{profile.tagline}</p>
+        <div className="mt-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-sm text-faint lg:justify-start">
           <span className="inline-flex items-center gap-1.5">
             <MapPin size={14} /> {profile.location}
           </span>
           <span>{profile.availability}</span>
         </div>
-        <div className="mt-6 flex flex-wrap items-center gap-3">
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
           <a href="#projects" className="btn btn-solid">View my work</a>
           <a href="#contact" className="btn btn-ghost">Get in touch</a>
         </div>
-        <div className="mt-6 flex items-center gap-5 text-muted">
+        <div className="mt-6 flex items-center justify-center gap-5 text-muted lg:justify-start">
           <a href={profile.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="transition-colors hover:text-ink">
             <Github size={20} />
           </a>

@@ -28,7 +28,7 @@ export default function Projects() {
           </div>
         ))}
       </div>
-      <a href="#/projects" className="btn btn-ghost mt-8">
+      <a href="#/projects" className="btn btn-ghost mt-8 w-full sm:w-auto">
         All {projects.length} projects <ArrowRight size={15} />
       </a>
     </Section>

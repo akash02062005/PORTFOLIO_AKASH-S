@@ -25,7 +25,7 @@ export default function BlogTeaser() {
           </a>
         ))}
       </div>
-      <a href="#/blog" className="btn btn-ghost mt-8">
+      <a href="#/blog" className="btn btn-ghost mt-8 w-full sm:w-auto">
         All posts <ArrowRight size={15} />
       </a>
     </Section>

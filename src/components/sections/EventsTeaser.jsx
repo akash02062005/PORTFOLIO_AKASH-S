@@ -25,10 +25,10 @@ export default function EventsTeaser() {
         title="Wins, in order"
         subtitle={`${college.length} college & national-level events — ${wins.length} finishing as winner or finalist.`}
       />
-      <ol className="relative ml-2 border-l border-line">
+      <ol className="relative ml-1.5 border-l border-line sm:ml-2">
         {featured.map((e) => (
-          <li key={e.title} className="relative mb-8 ml-5 last:mb-0 sm:ml-8">
-            <span className="absolute -left-[27px] top-1 h-2.5 w-2.5 rounded-full border-2 border-paper bg-ink sm:-left-[39px]" />
+          <li key={e.title} className="relative mb-9 ml-6 pr-1 last:mb-0 sm:ml-8">
+            <span className="absolute -left-[31px] top-1 h-2.5 w-2.5 rounded-full border-2 border-paper bg-ink sm:-left-[39px]" />
             <p className="font-mono text-xs uppercase tracking-wider text-faint">
               {(e.certs && e.certs[0] && e.certs[0].date) || ''}
             </p>
@@ -43,7 +43,7 @@ export default function EventsTeaser() {
           </li>
         ))}
       </ol>
-      <a href="#/events" className="btn btn-ghost mt-8">
+      <a href="#/events" className="btn btn-ghost mt-8 w-full sm:w-auto">
         All {college.length} competitions <ArrowRight size={15} />
       </a>
     </Section>

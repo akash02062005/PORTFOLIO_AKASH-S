@@ -19,10 +19,10 @@ export default function CredentialsTeaser() {
         title="Key certifications"
         subtitle={`The latest of ${proCertCount}+ professional certifications across ${proIssuerCount} platforms.`}
       />
-      <ol className="relative ml-2 border-l border-line">
+      <ol className="relative ml-1.5 border-l border-line sm:ml-2">
         {featured.map((c) => (
-          <li key={c.title} className="relative mb-8 ml-5 last:mb-0 sm:ml-8">
-            <span className="absolute -left-[27px] top-1 h-2.5 w-2.5 rounded-full border-2 border-paper bg-ink sm:-left-[39px]" />
+          <li key={c.title} className="relative mb-9 ml-6 pr-1 last:mb-0 sm:ml-8">
+            <span className="absolute -left-[31px] top-1 h-2.5 w-2.5 rounded-full border-2 border-paper bg-ink sm:-left-[39px]" />
             <p className="font-mono text-xs uppercase tracking-wider text-faint">{c.date}</p>
             <p className="mt-1 inline-flex items-center gap-2 font-display font-semibold">
               <BadgeCheck size={15} className="shrink-0 text-muted" /> {c.title}
@@ -38,7 +38,7 @@ export default function CredentialsTeaser() {
           </a>
         ))}
       </div>
-      <a href="#/certificates" className="btn btn-ghost mt-8">
+      <a href="#/certificates" className="btn btn-ghost mt-8 w-full sm:w-auto">
         All {proCertCount} certificates <ArrowRight size={15} />
       </a>
     </Section>
