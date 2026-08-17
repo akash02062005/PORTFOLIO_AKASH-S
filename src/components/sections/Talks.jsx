@@ -29,9 +29,9 @@ export default function Talks() {
         ))}
       </div>
       <h3 className="mb-4 mt-10 font-display font-semibold text-muted">Seminars delivered</h3>
-      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+      <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
         {seminars.map((s) => (
-          <article key={s.title} className="card card-hover flex flex-col p-5">
+          <article key={s.title} className="card card-hover flex w-full flex-col p-4 sm:w-[calc(50%-0.5rem)] sm:p-5 lg:w-[calc(33.333%-0.667rem)]">
             <span className="chip self-start">{s.tag}</span>
             <h4 className="mt-3 font-display font-semibold">{s.title}</h4>
             <p className="mt-2 grow text-sm leading-relaxed text-muted">{s.points[0]}</p>
