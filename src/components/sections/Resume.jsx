@@ -10,11 +10,11 @@ export default function Resume() {
         title="Pick the resume that fits your role"
         subtitle="Role-tailored resumes — grab the one closest to the position you are hiring for."
       />
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
         {resumes.map((r) => (
           <div key={r.role} className="card card-hover flex flex-col p-5">
-            <h3 className="font-display font-semibold">{r.role}</h3>
-            <p className="mt-1 grow text-sm text-muted">{r.desc}</p>
+            <h3 className="font-display text-sm font-semibold sm:text-base">{r.role}</h3>
+            <p className="mt-1 grow text-xs text-muted sm:text-sm">{r.desc}</p>
             <a href={r.file} download className="btn btn-ghost mt-4 self-start !px-4 !py-1.5">
               <FileDown size={14} /> Download PDF
             </a>

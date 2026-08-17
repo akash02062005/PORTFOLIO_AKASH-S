@@ -10,7 +10,7 @@ export default function Talks() {
         title="Papers & presentations"
         subtitle="Conference papers presented and technical seminars delivered."
       />
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2">
         {conferences.map((c) => (
           <article key={c.event} className="card card-hover flex flex-col p-5 sm:p-6">
             <span className="chip self-start">{c.badge}</span>
@@ -29,7 +29,7 @@ export default function Talks() {
         ))}
       </div>
       <h3 className="mb-4 mt-10 font-display font-semibold text-muted">Seminars delivered</h3>
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
         {seminars.map((s) => (
           <article key={s.title} className="card card-hover flex flex-col p-5">
             <span className="chip self-start">{s.tag}</span>

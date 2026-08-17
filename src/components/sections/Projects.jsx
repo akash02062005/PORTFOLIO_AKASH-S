@@ -15,10 +15,10 @@ export default function Projects() {
         title="Flagship builds, in order"
         subtitle="Four projects, from first MERN platform to award-winning AI products — click through for the rest."
       />
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid grid-cols-2 gap-3 sm:gap-5">
         {featured.map((p, i) => (
           <div key={p.id}>
-            <p className="mb-2 font-mono text-xs uppercase tracking-wider text-faint">
+            <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-faint sm:text-xs">
               <span className="mr-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-line text-[10px] font-semibold text-muted">
                 {i + 1}
               </span>

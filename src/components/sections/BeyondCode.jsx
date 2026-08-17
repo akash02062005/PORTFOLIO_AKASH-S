@@ -5,7 +5,7 @@ export default function BeyondCode() {
   return (
     <Section id="beyond">
       <SectionTitle kicker="12 — Beyond code" title="When I am not shipping" />
-      <div className="grid gap-10 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10">
         <div>
           <h3 className="mb-4 font-display font-semibold text-muted">Interests</h3>
           <div className="flex flex-wrap gap-2">

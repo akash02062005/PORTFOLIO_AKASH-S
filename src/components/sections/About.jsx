@@ -5,14 +5,14 @@ export default function About() {
   return (
     <Section id="about">
       <SectionTitle kicker="01 — About" title="A little bit about me" />
-      <div className="grid gap-8 lg:grid-cols-[1fr,300px] lg:gap-12">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-[1fr,240px] lg:grid-cols-[1fr,300px] lg:gap-12">
         <div className="space-y-4 leading-relaxed text-muted">
           {about.summary.map((p, i) => (
             <p key={i}>{p}</p>
           ))}
         </div>
         <div>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-1 lg:grid-cols-2">
             {about.facts.map((f) => (
               <div key={f.label} className="card p-4 text-center">
                 <p className="font-display text-xl font-bold">{f.value}</p>

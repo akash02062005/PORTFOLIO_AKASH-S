@@ -41,14 +41,14 @@ export default function ProjectCard({ p, highlights = 2, compact = false }) {
   return (
     <article className="card card-hover flex flex-col overflow-hidden">
       <Demo id={p.id} name={p.name} image={p.image} />
-      <div className="flex grow flex-col gap-3 p-5 sm:p-6">
+      <div className="flex grow flex-col gap-2 p-3 sm:gap-3 sm:p-5">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h3 className="inline-flex items-center gap-2 font-display text-lg font-semibold">
+            <h3 className="inline-flex items-center gap-2 font-display text-sm font-semibold sm:text-lg">
               {p.name}
               {p.award && <Trophy size={15} className="shrink-0" aria-label="Award winner" />}
             </h3>
-            <p className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-faint">{p.type}{p.date ? ` · ${p.date}` : ''}</p>
+            <p className="mt-0.5 font-mono text-[9px] uppercase leading-tight tracking-wider text-faint sm:text-[11px]">{p.type}{p.date ? ` · ${p.date}` : ''}</p>
           </div>
           <div className="flex shrink-0 gap-3 text-muted">
             {p.repo && (
@@ -63,7 +63,7 @@ export default function ProjectCard({ p, highlights = 2, compact = false }) {
             )}
           </div>
         </div>
-        <p className={`text-sm leading-relaxed text-muted ${compact ? "line-clamp-2" : ""}`}>{p.blurb}</p>
+        <p className={`text-xs leading-relaxed text-muted sm:text-sm ${compact ? "line-clamp-2" : ""}`}>{p.blurb}</p>
         {!compact && (
           <ul className="space-y-1.5">
             {p.highlights.slice(0, highlights).map((h, i) => (
@@ -75,12 +75,12 @@ export default function ProjectCard({ p, highlights = 2, compact = false }) {
           </ul>
         )}
         <div className="mt-auto flex flex-wrap gap-2 pt-2">
-          {(compact ? p.stack.slice(0, 4) : p.stack).map((s) => (
-            <span key={s} className="chip">
+          {(compact ? p.stack.slice(0, 3) : p.stack).map((s) => (
+            <span key={s} className="chip !px-2 !text-[10px] sm:!px-3 sm:!text-xs">
               {s}
             </span>
           ))}
-          {compact && p.stack.length > 4 && <span className="chip">+{p.stack.length - 4}</span>}
+          {compact && p.stack.length > 3 && <span className="chip !px-2 !text-[10px] sm:!px-3 sm:!text-xs">+{p.stack.length - 3}</span>}
         </div>
       </div>
     </article>

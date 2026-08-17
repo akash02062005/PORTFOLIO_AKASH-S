@@ -11,7 +11,7 @@ export default function BlogTeaser() {
         title="From the blog"
         subtitle="Notes on building AI products, hackathons and research."
       />
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
         {latest.map((p) => (
           <a key={p.slug} href={`#/blog/${p.slug}`} className="card card-hover flex flex-col p-5 sm:p-6">
             <p className="font-mono text-xs text-faint">
